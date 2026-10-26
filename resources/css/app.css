@@ -1,9 +1,181 @@
 @import 'tailwindcss';
+@import './apple-tinted.css' layer(components);
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
+@source '../views/**/*.blade.php';
+@source '../js/**/*.js';
+
+@variant dark (&:where(.dark, .dark *));
 
 @theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+    /* ── Fuentes ── */
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
+    --font-label-sm: 'Plus Jakarta Sans', sans-serif;
+    --font-label-md: 'Plus Jakarta Sans', sans-serif;
+    --font-body-md: 'Plus Jakarta Sans', sans-serif;
+    --font-body-lg: 'Plus Jakarta Sans', sans-serif;
+    --font-title-sm: 'Plus Jakarta Sans', sans-serif;
+    --font-title-md: 'Plus Jakarta Sans', sans-serif;
+    --font-title-lg: 'Plus Jakarta Sans', sans-serif;
+    --font-headline-md: 'Plus Jakarta Sans', sans-serif;
+    --font-currency-display: 'Plus Jakarta Sans', sans-serif;
+
+    /* ── Tamaños de texto ── */
+    --text-label-sm: 0.6875rem;
+    --text-label-sm--line-height: 1rem;
+    --text-label-sm--font-weight: 600;
+    --text-label-md: 0.75rem;
+    --text-label-md--line-height: 1rem;
+    --text-label-md--font-weight: 500;
+    --text-body-md: 0.875rem;
+    --text-body-md--line-height: 1.25rem;
+    --text-body-lg: 1rem;
+    --text-body-lg--line-height: 1.5rem;
+    --text-title-sm: 0.875rem;
+    --text-title-sm--line-height: 1.25rem;
+    --text-title-sm--font-weight: 600;
+    --text-title-md: 1rem;
+    --text-title-md--line-height: 1.5rem;
+    --text-title-md--font-weight: 600;
+    --text-title-lg: 1.25rem;
+    --text-title-lg--line-height: 1.75rem;
+    --text-title-lg--font-weight: 600;
+    --text-headline-md: 1.5rem;
+    --text-headline-md--line-height: 2rem;
+    --text-headline-md--font-weight: 700;
+    --text-currency-display: 1.75rem;
+    --text-currency-display--line-height: 2rem;
+    --text-currency-display--font-weight: 700;
+
+    /* ── Espaciado con nombre ── */
+    --spacing-space-2xs: 0.25rem;
+    --spacing-space-xs: 0.5rem;
+    --spacing-space-sm: 0.75rem;
+    --spacing-space-md: 1rem;
+    --spacing-space-lg: 1.5rem;
+    --spacing-space-xl: 2rem;
+
+    /* ── Colores ── */
+    --color-surface: #111319;
+    --color-surface-bright: #37393f;
+    --color-surface-container-lowest: #0c0e14;
+    --color-surface-container-low: #191c21;
+    --color-surface-container: #1d2025;
+    --color-surface-container-high: #282a30;
+    --color-primary: #f2ca50;
+    --color-primary-container: #d4af37;
+    --color-primary-fixed: #ffe088;
+    --color-on-primary: #3c2f00;
+    --color-on-surface: #e2e2ea;
+    --color-on-surface-variant: #d0c5af;
+}
+
+/* ==============================================================
+   ÍCONOS
+   ============================================================== */
+.material-symbols-outlined {
+    font-family: 'Material Symbols Outlined' !important;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ==============================================================
+   GRID DE PRODUCTOS
+   ============================================================== */
+#catalogo-productos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1rem;
+    align-content: start;
+    overflow-y: auto;
+    width: 100%;
+}
+
+.product-card {
+    display: flex;
+    flex-direction: column;
+    height: 245px;
+    background: rgba(29, 32, 37, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 1rem;
+    padding: 0.75rem;
+}
+
+/* ==============================================================
+   ESTADO VACÍO DEL CARRITO
+   ============================================================== */
+.empty-order-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 0.5rem;
+    height: 100%;
+    padding: 2rem 1rem;
+}
+.empty-icon { font-size: 2.5rem; opacity: 0.85; }
+
+/* ==============================================================
+   MODAL DE COBRO
+   ============================================================== */
+.payment-methods-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; }
+.payment-method-btn {
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.25rem;
+    padding: 0.75rem 0.5rem; border-radius: 0.75rem; background: #282a30; color: #e2e2ea;
+    border: 1px solid rgba(255, 255, 255, 0.06); font-size: 0.8rem; font-weight: 600; cursor: pointer;
+    transition: all 0.15s;
+}
+.payment-method-btn.active { border-color: #f2ca50; background: rgba(242, 202, 80, 0.12); }
+.tip-btn {
+    flex: 1; padding: 0.5rem; border-radius: 0.75rem; background: #282a30; color: #d0c5af;
+    border: 1px solid rgba(255, 255, 255, 0.06); font-weight: 600; cursor: pointer; transition: all 0.15s;
+}
+.tip-btn.active { background: #f2ca50; color: #3c2f00; border-color: #f2ca50; }
+
+/* Ticket */
+.thermal-ticket-box {
+    background: #fff; color: #000; font-family: 'Courier New', Courier, monospace; font-size: 12px;
+    line-height: 1.35; padding: 1rem; border-radius: 0.5rem; white-space: pre-wrap;
+    max-height: 50vh; overflow: auto;
+}
+.ticket-qr-container { display: flex; flex-direction: column; align-items: center; justify-content: center; margin-top: 0.5rem; }
+
+/* ==============================================================
+   COMPLEMENTARIOS (MODALES, BOTONES, ETC)
+   ============================================================== */
+.modal-overlay { position: fixed; inset: 0; background-color: rgba(12, 14, 19, 0.85); backdrop-filter: blur(16px); z-index: 9999; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.25s; }
+.modal-overlay.active { opacity: 1; pointer-events: auto; }
+.modal-content { background: rgba(29, 32, 37, 0.95); border: 1px solid rgba(212, 175, 55, 0.25); border-radius: 1.5rem; padding: 1.75rem; color: #e2e2ea; max-width: 540px; width: 100%; }
+.modal-header { display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding-bottom: 0.75rem; margin-bottom: 1.25rem; }
+.modal-title { color: #f2ca50; font-size: 1.25rem; font-weight: 700; }
+.modal-close { background: transparent; border: none; color: #d0c5af; font-size: 1.5rem; cursor: pointer; }
+
+.category-tab { padding: 0.5rem 1.25rem; border-radius: 9999px; background-color: #282a30; color: #d0c5af; font-size: 0.875rem; font-weight: 600; cursor: pointer; white-space: nowrap; }
+.category-tab.active { background-color: #f2ca50; color: #3c2f00; }
+.btn { padding: 0.625rem 1.25rem; border-radius: 0.75rem; font-weight: 600; cursor: pointer; border: none; }
+.btn-gold { background: linear-gradient(135deg, #f2ca50 0%, #d4af37 100%); color: #3c2f00; }
+.btn-subtle-gold { background: rgba(242, 202, 80, 0.12); color: #f2ca50; border: 1px solid rgba(242, 202, 80, 0.25); }
+.modal-cancel { background: #282a30; color: #d0c5af; }
+
+.order-item-row { display: flex; align-items: center; justify-content: space-between; padding: 0.625rem 0.75rem; border-radius: 0.75rem; background: rgba(25, 28, 33, 0.65); border: 1px solid rgba(255, 255, 255, 0.04); gap: 0.5rem; }
+.qty-btn { width: 22px; height: 22px; border-radius: 0.35rem; background: #282a30; color: #e2e2ea; border: none; cursor: pointer; }
+.qty-value { font-size: 0.875rem; font-weight: 700; color: #f2ca50; }
+
+/* Impresión Ticket */
+@media print {
+  body * { visibility: hidden !important; }
+  #ticket-printable-area, #ticket-printable-area *, #ticket-content-box, #ticket-content-box * { visibility: visible !important; }
+  #ticket-modal { position: absolute !important; left: 0 !important; top: 0 !important; width: 80mm !important; display: block !important; }
+  #ticket-modal .modal-content { background: #ffffff !important; color: #000000 !important; }
 }
