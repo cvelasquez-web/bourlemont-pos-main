@@ -41,19 +41,10 @@ RUN echo "server { \n\
 EXPOSE 10000
 
 # ==========================================
-# ARRANCAR LA APLICACIÓN (USANDO VARIABLES DE ENTORNO)
+# COPIAR EL SCRIPT DE INICIO
 # ==========================================
-# Al no crear un .env, Laravel leerá automáticamente
-# las variables de entorno de Render (APP_KEY, DB_CONNECTION, DB_URL, etc.)
-# ==========================================
-# ARRANCAR LA APLICACIÓN CON MIGRACIONES
-# ==========================================
-CMD echo "Iniciando despliegue..." && \
-    php artisan config:clear && \
-    php artisan cache:clear && \
-    php artisan route:clear && \
-    php artisan view:clear && \
-    DB_URL="${DIRECT_DATABASE_URL:-$DB_URL}" php artisan migrate --force && \
-    php artisan config:cache && \
-    php artisan route:cache && \
-    php-fpm -D && nginx -g "daemon off;"
+COPY start.sh /usr/local/bin/start.sh
+RUN chmod +x /usr/local/bin/start.sh
+
+# Ejecutar el script al arrancar
+CMD ["/usr/local/bin/start.sh"]
