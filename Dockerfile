@@ -20,8 +20,12 @@ COPY . /var/www
 # Instalar dependencias de Composer
 RUN composer install --no-interaction --optimize-autoloader --no-dev
 
-# Permisos (Aseguramos que storage y bootstrap/cache sean escribibles)
-RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache && \
+# ==========================================
+# PERMISOS CRÍTICOS
+# ==========================================
+# Aseguramos que el usuario www-data sea dueño de TODO el proyecto
+# y damos permisos de escritura a storage y bootstrap/cache.
+RUN chown -R www-data:www-data /var/www && \
     chmod -R 775 /var/www/storage /var/www/bootstrap/cache
 
 # Configuración interna de Nginx para Render (Puerto 10000 y TCP 9000)
