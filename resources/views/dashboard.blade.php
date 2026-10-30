@@ -3,8 +3,8 @@
 @section('title', 'Dashboard Gerencial & Arqueos | Bourlemont POS')
 
 @push('styles')
-  <link rel="stylesheet" href="{{ asset('assets/css/pos.css') }}">
-  
+  <!--<link rel="stylesheet" href="{{ asset('assets/css/pos.css') }}"> -->
+  <!-- ... -->
   <style>
     @layer base {
       html, body { margin: 0; padding: 0; }
