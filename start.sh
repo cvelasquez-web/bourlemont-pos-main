@@ -21,17 +21,14 @@ EOL
 chown www-data:www-data /var/www/.env
 chmod 775 /var/www/.env
 
-# 3. Limpiar cachés viejas
-php artisan config:clear
-php artisan cache:clear
-php artisan route:clear
-php artisan view:clear
+# 3. Limpiar TODAS las cachés (incluyendo vistas y rutas)
+php artisan optimize:clear
 
 # 4. Ejecutar migraciones
 php artisan migrate --force
 
-# 5. ¡Sembrar la base de datos! (Crear usuarios y datos por defecto)
-#php artisan db:seed --force
+# 5. Sembrar la base de datos (comentado para evitar duplicados)
+# php artisan db:seed --force
 
 # 6. Crear cachés para producción
 php artisan config:cache
