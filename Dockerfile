@@ -27,7 +27,7 @@ RUN touch .env && \
     echo "APP_URL=https://bourlemont-pos-main.onrender.com" >> .env && \
     echo "APP_KEY=\${APP_KEY}" >> .env && \
     echo "DB_CONNECTION=pgsql" >> .env && \
-    echo "DB_URL=\${DATABASE_URL}" >> .env && \
+    echo "DB_URL=\${DIRECT_DATABASE_URL}" >> .env && \
     echo "SESSION_DRIVER=file" >> .env && \
     echo "CACHE_STORE=file" >> .env && \
     echo "QUEUE_CONNECTION=sync" >> .env
@@ -62,5 +62,5 @@ CMD php artisan config:clear && \
     php artisan cache:clear && \
     php artisan route:clear && \
     php artisan view:clear && \
-    php artisan migrate --force && \
+    DB_URL="${DIRECT_DATABASE_URL}" php artisan migrate --force && \
     php-fpm -D && nginx -g "daemon off;"
