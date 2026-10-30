@@ -39,6 +39,34 @@
     @keyframes shakeAnim { 0%, 100% { transform: translateX(0); } 20%, 60% { transform: translateX(-8px); } 40%, 80% { transform: translateX(8px); } }
     .auth-error { display: none; color: #ffb4ab; background-color: rgba(147, 0, 10, 0.35); border: 1px solid rgba(255, 180, 171, 0.4); padding: 10px 14px; border-radius: 0.75rem; font-size: 13px; font-weight: 500; text-align: center; }
     .auth-mode-tab.active { background-color: #f2ca50 !important; color: #3c2f00 !important; font-weight: 600; box-shadow: 0 2px 10px rgba(242, 202, 80, 0.3); }
+
+    /* ==============================================================
+       FORZAR RESPONSIVE GLOBAL PARA TODAS LAS VISTAS
+       ============================================================== */
+    @media (max-width: 1024px) {
+      /* Quita el margen izquierdo de los contenedores principales */
+      .pl-72, .md\:pl-72, .lg\:pl-72 {
+        padding-left: 0 !important;
+      }
+      
+      /* Fuerza a que las filas de contenido se apilen verticalmente */
+      .flex-row, .md\:flex-row, .lg\:flex-row {
+        flex-direction: column !important;
+      }
+      
+      /* Asegura que el contenido ocupe todo el ancho y no haya scroll horizontal */
+      main, .content-wrapper, .main-container {
+        width: 100% !important;
+        max-width: 100vw !important;
+        overflow-x: hidden !important;
+      }
+
+      /* Ajusta los contenedores internos de las tarjetas o tablas */
+      .w-72, .w-80, .w-96 {
+        width: 100% !important;
+        max-width: 100% !important;
+      }
+    }
   </style>
   
   @stack('styles')
