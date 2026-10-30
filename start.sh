@@ -31,7 +31,7 @@ php artisan view:clear
 php artisan migrate --force
 
 # 5. ¡Sembrar la base de datos! (Crear usuarios y datos por defecto)
-php artisan db:seed --force
+#php artisan db:seed --force
 
 # 6. Crear cachés para producción
 php artisan config:cache
