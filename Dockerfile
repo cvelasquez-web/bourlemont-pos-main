@@ -45,9 +45,15 @@ EXPOSE 10000
 # ==========================================
 # Al no crear un .env, Laravel leerá automáticamente
 # las variables de entorno de Render (APP_KEY, DB_CONNECTION, DB_URL, etc.)
-CMD php artisan config:clear && \
+# ==========================================
+# ARRANCAR LA APLICACIÓN CON MIGRACIONES
+# ==========================================
+CMD echo "Iniciando despliegue..." && \
+    php artisan config:clear && \
     php artisan cache:clear && \
     php artisan route:clear && \
     php artisan view:clear && \
-    DB_URL="${DIRECT_DATABASE_URL}" php artisan migrate --force && \
+    DB_URL="${DIRECT_DATABASE_URL:-$DB_URL}" php artisan migrate --force && \
+    php artisan config:cache && \
+    php artisan route:cache && \
     php-fpm -D && nginx -g "daemon off;"
