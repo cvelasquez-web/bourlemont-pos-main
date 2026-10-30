@@ -1,8 +1,9 @@
 FROM php:8.3-fpm
 
-# Instalar dependencias y Nginx
+# Instalar dependencias del sistema (incluyendo Node.js y Nginx)
 RUN apt-get update && apt-get install -y \
     git curl libpng-dev libonig-dev libxml2-dev zip unzip libpq-dev libzip-dev nginx \
+    nodejs npm \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Instalar extensiones PHP (incluida ZIP y PostgreSQL)
@@ -14,18 +15,20 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 # Directorio de trabajo
 WORKDIR /var/www
 
-# Copiar proyecto
+# Copiar el proyecto
 COPY . /var/www
+
+# ==========================================
+# COMPILAR VITE (CSS y JS)
+# ==========================================
+# Instalamos las dependencias de Node y compilamos los assets
+RUN npm install && npm run build
 
 # Instalar dependencias de Composer
 RUN composer install --no-interaction --optimize-autoloader --no-dev
 
-# ==========================================
-# PERMISOS CRÍTICOS
-# ==========================================
-# Aseguramos que el usuario www-data sea dueño de TODO el proyecto
-# y damos permisos de escritura a storage y bootstrap/cache.
-RUN chown -R www-data:www-data /var/www && \
+# Permisos (Aseguramos que storage y bootstrap/cache sean escribibles)
+RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache && \
     chmod -R 775 /var/www/storage /var/www/bootstrap/cache
 
 # Configuración interna de Nginx para Render (Puerto 10000 y TCP 9000)
