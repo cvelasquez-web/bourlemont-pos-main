@@ -30,10 +30,13 @@ php artisan view:clear
 # 4. Ejecutar migraciones
 php artisan migrate --force
 
-# 5. Crear cachés para producción
+# 5. ¡Sembrar la base de datos! (Crear usuarios y datos por defecto)
+php artisan db:seed --force
+
+# 6. Crear cachés para producción
 php artisan config:cache
 php artisan route:cache
 
-# 6. Iniciar PHP-FPM y Nginx
+# 7. Iniciar PHP-FPM y Nginx
 php-fpm -D
 nginx -g "daemon off;"
