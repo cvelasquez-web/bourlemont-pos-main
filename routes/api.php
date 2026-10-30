@@ -7,12 +7,11 @@ use App\Http\Controllers\Api\V1\InventarioController;
 use App\Http\Controllers\Api\V1\UsuarioController;
 use App\Http\Controllers\Api\V1\AuditoriaController;
 use App\Http\Controllers\Api\V1\ReporteController;
+use App\Http\Controllers\Api\V1\CajaController; // <-- NUEVA IMPORTACIÓN
 
 Route::prefix('v1')->group(function () {
 
     // Rutas Públicas (Login)
-    //Route::post('/auth/login-pin', [AuthController::class, 'loginPin'])->middleware(['web', 'throttle:5,1']);
-    //Route::post('/auth/login-admin', [AuthController::class, 'loginAdmin'])->middleware(['web', 'throttle:5,1']);
     Route::post('/auth/login-pin', [AuthController::class, 'loginPin'])->middleware(['web', 'throttle:' . config('auth.login_throttle') . ',1']);
     Route::post('/auth/login-admin', [AuthController::class, 'loginAdmin'])->middleware(['web', 'throttle:' . config('auth.login_throttle') . ',1']);
     Route::get('/auth/nit/{nit}', [AuthController::class, 'buscarNit']);
@@ -22,15 +21,21 @@ Route::prefix('v1')->group(function () {
 
         Route::get('/auth/me', [AuthController::class, 'me']);
 
+        // --- CAJA (NUEVA RUTA) ---
+        // Esta es la que el dashboard está buscando
+        Route::get('/caja/actual', [CajaController::class, 'actual']); 
+        Route::post('/caja/abrir', [CajaController::class, 'abrir']); // (Opcional, por si necesitas abrir caja)
+        Route::post('/caja/cerrar', [CajaController::class, 'cerrar']); // (Opcional, por si necesitas cerrar caja)
+
         // --- ADMIN y BARTENDER ---
         
         // Rutas de Órdenes (El POS y el Dashboard las usan)
-        Route::get('/ordenes', [OrdenController::class, 'index']);              // Listar órdenes (Dashboard)
-        Route::get('/ordenes/{id}', [OrdenController::class, 'show']);          // Ver una orden específica
-        Route::post('/ordenes', [OrdenController::class, 'crear']);             // Crear nueva orden
-        Route::put('/ordenes/{id}', [OrdenController::class, 'update']);        // Actualizar comanda abierta
-        Route::post('/ordenes/{id}/cobrar', [OrdenController::class, 'cobrar']); // Cobrar orden
-        Route::post('/ordenes/{id}/anular', [OrdenController::class, 'anular']); // Anular orden (Dashboard)
+        Route::get('/ordenes', [OrdenController::class, 'index']);              
+        Route::get('/ordenes/{id}', [OrdenController::class, 'show']);          
+        Route::post('/ordenes', [OrdenController::class, 'crear']);             
+        Route::put('/ordenes/{id}', [OrdenController::class, 'update']);        
+        Route::post('/ordenes/{id}/cobrar', [OrdenController::class, 'cobrar']); 
+        Route::post('/ordenes/{id}/anular', [OrdenController::class, 'anular']); 
 
         // Rutas de Inventario (Solo lectura para Bartenders)
         Route::get('/inventario/productos', [InventarioController::class, 'listarProductos']);
