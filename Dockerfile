@@ -25,7 +25,8 @@ COPY . /var/www
 RUN npm install && npm run build
 
 # Instalar dependencias de Composer
-RUN composer install --no-interaction --optimize-autoloader --no-dev
+#RUN composer install --no-interaction --optimize-autoloader --no-dev
+RUN npm install && VITE_APP_URL="https://bourlemont-pos-main.onrender.com" npm run build
 
 # Permisos (Aseguramos que storage y bootstrap/cache sean escribibles)
 RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache && \
