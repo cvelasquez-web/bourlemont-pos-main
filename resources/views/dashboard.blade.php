@@ -333,7 +333,3 @@
     </div>
   </div>
 @endsection
-
-@push('scripts')
-  <script type="module" src="{{ asset('assets/js/dashboard.js') }}"></script>
-@endpush
