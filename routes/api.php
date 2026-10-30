@@ -7,7 +7,7 @@ use App\Http\Controllers\Api\V1\InventarioController;
 use App\Http\Controllers\Api\V1\UsuarioController;
 use App\Http\Controllers\Api\V1\AuditoriaController;
 use App\Http\Controllers\Api\V1\ReporteController;
-use App\Http\Controllers\Api\V1\CajaController; // <-- NUEVA IMPORTACIÓN
+use App\Http\Controllers\Api\V1\CajaController;
 
 Route::prefix('v1')->group(function () {
 
@@ -21,11 +21,11 @@ Route::prefix('v1')->group(function () {
 
         Route::get('/auth/me', [AuthController::class, 'me']);
 
-        // --- CAJA (NUEVA RUTA) ---
-        // Esta es la que el dashboard está buscando
+        // --- CAJA ---
         Route::get('/caja/actual', [CajaController::class, 'actual']); 
-        Route::post('/caja/abrir', [CajaController::class, 'abrir']); // (Opcional, por si necesitas abrir caja)
-        Route::post('/caja/cerrar', [CajaController::class, 'cerrar']); // (Opcional, por si necesitas cerrar caja)
+        Route::get('/caja/historial', [CajaController::class, 'historial']); // <-- NUEVA RUTA AGREGADA
+        Route::post('/caja/abrir', [CajaController::class, 'abrir']);
+        Route::post('/caja/cerrar', [CajaController::class, 'cerrar']);
 
         // --- ADMIN y BARTENDER ---
         

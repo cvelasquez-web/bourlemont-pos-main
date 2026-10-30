@@ -17,4 +17,11 @@ class CajaController extends Controller
             'monto_actual' => 0,
         ]);
     }
+
+    public function historial()
+    {
+        // Aquí deberías retornar el historial de cajas (ej. cajas cerradas)
+        // Por ahora, retornamos un array vacío para que no falle
+        return response()->json([]);
+    }
 }
