@@ -21,9 +21,9 @@ RUN composer install --no-interaction --optimize-autoloader --no-dev
 # Permisos
 RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
 
-# Configuración interna de Nginx para Render
+# Configuración interna de Nginx para Render (Puerto 10000)
 RUN echo "server { \n\
-    listen 80; \n\
+    listen 10000; \n\
     root /var/www/public; \n\
     index index.php index.html; \n\
     location / { \n\
@@ -35,8 +35,8 @@ RUN echo "server { \n\
     } \n\
 }" > /etc/nginx/sites-available/default
 
-# Exponer puerto
-EXPOSE 80
+# Exponer puerto (Render usa el 10000)
+EXPOSE 10000
 
 # Iniciar Nginx y PHP-FPM
 CMD service nginx start && php-fpm
