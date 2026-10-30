@@ -1,5 +1,15 @@
 import { api, authState } from "./api.js";
 
+// ── Imagen por defecto ──────────────────────────────────────────────────────
+const FALLBACK_IMG = "/assets/img/cocktail-fallback.svg";
+
+const resolveImg = (url) => {
+    if (!url) return FALLBACK_IMG;
+    return url.startsWith("http") || url.startsWith("/")
+        ? url
+        : `/assets/img/${url}`;
+};
+
 // 🛑 Solo ejecutar si estamos en la página de inventario
 if (document.getElementById("inventory-table-body")) {
     
@@ -94,7 +104,7 @@ if (document.getElementById("inventory-table-body")) {
             else if (p.stock_ml === 0 && p.tipo === "COMPUESTO")
                 badge = `<span class="badge-status escandallo">🧪 Escandallo</span>`;
 
-            const imgEl = `<img src="${p.imagen_url}" onerror="this.src='/assets/img/cocktail-fallback.svg'" class="w-10 h-10 object-contain rounded bg-stone-900 border border-stone-800">`;
+            const imgEl = `<img src="${resolveImg(p.imagen_url)}" onerror="this.onerror=null;this.src='${FALLBACK_IMG}'" class="w-10 h-10 object-contain rounded bg-stone-900 border border-stone-800">`;
 
             let actionsTd = "";
             if (isAdmin) {
@@ -212,7 +222,7 @@ if (document.getElementById("inventory-table-body")) {
         document.getElementById("producto-form").reset();
         if (fileInput) fileInput.value = "";
         if (previewContainer) previewContainer.classList.add("hidden");
-        if (previewImg) previewImg.src = "";
+        if (previewImg) previewImg.removeAttribute("src");
         if (previewNombre) previewNombre.textContent = "Formatos: PNG, JPG, WEBP, SVG";
         document.getElementById("producto-modal-title").innerHTML = `<span class="material-symbols-outlined text-primary">add_box</span><span>Nuevo Insumo / Licor</span>`;
         document.getElementById("prod-submit-btn").textContent = "Crear Insumo / Licor";
@@ -235,17 +245,21 @@ if (document.getElementById("inventory-table-body")) {
         if (fileInput) fileInput.value = "";
         if (p.imagen_url) {
             if (previewImg) {
-                previewImg.src = p.imagen_url.startsWith("http") || p.imagen_url.startsWith("/") ? p.imagen_url : `/assets/img/${p.imagen_url}`;
+                previewImg.onerror = () => {
+                    previewImg.onerror = null;
+                    previewImg.src = FALLBACK_IMG;
+                };
+                previewImg.src = resolveImg(p.imagen_url);
             }
             if (previewContainer) previewContainer.classList.remove("hidden");
             if (previewNombre) previewNombre.textContent = `Imagen actual: ${p.imagen_url}`;
         } else {
             if (previewContainer) previewContainer.classList.add("hidden");
-            if (previewImg) previewImg.src = "";
+            if (previewImg) previewImg.removeAttribute("src");
             if (previewNombre) previewNombre.textContent = "Formatos: PNG, JPG, WEBP, SVG";
         }
 
-        document.getElementById("producto-modal-title").innerHTML = `<span class="material-symbols-outlined text-primary">edit</span><span>Editar: ${p.nombre}</span>`;
+        document.getElementById("producto-modal-title").innerHTML = `<span class="material-symbols-outlined text-primary">edit</span><span>Editar: ${escH(p.nombre)}</span>`;
         document.getElementById("prod-submit-btn").textContent = "Guardar Cambios";
         getModalProducto().classList.remove("hidden");
     }
