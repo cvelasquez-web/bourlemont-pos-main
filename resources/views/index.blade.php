@@ -1,5 +1,5 @@
-@extends('layouts.app')
 
+@extends('layouts.auth')
 @section('title', 'Acceso | Bourlemont Champagne Bar POS')
 
 @section('content')
