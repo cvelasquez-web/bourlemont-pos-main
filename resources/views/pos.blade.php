@@ -75,6 +75,12 @@
     <!-- Top Global Header -->
     <header class="h-16 w-full bg-surface/85 backdrop-blur-xl px-4 lg:px-6 flex items-center justify-between border-b border-white/5 z-40 flex-shrink-0">
       <div class="flex items-center gap-2 text-on-surface font-semibold text-sm">
+        
+        <!-- 🟢 Botón Hamburguesa (solo visible en móviles) -->
+        <button id="mobile-menu-btn" type="button" class="lg:hidden p-1.5 rounded-xl bg-surface-container-low hover:bg-surface-container-high text-on-surface border border-white/5 flex items-center justify-center transition-all" aria-label="Abrir menú">
+          <span class="material-symbols-outlined text-[24px]">menu</span>
+        </button>
+
         <span class="material-symbols-outlined text-primary text-[20px]">point_of_sale</span>
         <span class="truncate">Terminal POS</span>
       </div>

@@ -1,9 +1,23 @@
-<!-- Se oculta en móviles (hidden) y se muestra en pantallas medianas o grandes (md:block) -->
-<aside class="hidden md:block fixed left-0 top-0 h-full w-72 p-space-md z-50 pointer-events-none">
-    <div class="h-full w-full bg-surface-container/85 backdrop-blur-2xl rounded-2xl p-space-md flex flex-col justify-between shadow-[0_8px_32px_rgba(0,0,0,0.6)] border border-white/5 pointer-events-auto">
+<!-- Fondo oscuro al abrir en móvil -->
+<div id="sidebar-backdrop" class="fixed inset-0 bg-black/60 z-40 hidden lg:hidden backdrop-blur-sm transition-opacity"></div>
+
+<!-- Sidebar deslizable (Drawer) -->
+<aside id="main-sidebar" class="fixed inset-y-0 left-0 z-50 w-72 transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out flex flex-col shadow-2xl">
+    
+    <!-- Contenedor principal de tu menú (con tus estilos originales) -->
+    <div class="h-full w-full bg-surface-container/85 backdrop-blur-2xl lg:rounded-2xl p-space-md flex flex-col justify-between lg:shadow-[0_8px_32px_rgba(0,0,0,0.6)] border border-white/5">
+        
         <div class="flex flex-col gap-space-lg">
-            <!-- Logo -->
-            <div class="flex items-center justify-center p-4 border-b border-stone-800/60 mb-2">
+            <!-- Encabezado Móvil con Botón Cerrar (X) -->
+            <div class="flex items-center justify-between p-4 border-b border-stone-800/60 lg:hidden">
+                <span class="font-bold text-on-surface text-title-md">Navegación</span>
+                <button id="close-sidebar-btn" type="button" class="p-1 rounded-lg text-on-surface-variant hover:text-on-surface">
+                    <span class="material-symbols-outlined text-[24px]">close</span>
+                </button>
+            </div>
+
+            <!-- Logo (Visible solo en escritorio para ahorrar espacio en móvil) -->
+            <div class="hidden lg:flex items-center justify-center p-4 border-b border-stone-800/60 mb-2">
                 <img src="{{ asset('assets/img/logo1.png') }}" onerror="if(!this._f1){this._f1=true; this.src='{{ asset('assets/img/logo.png') }}';}else if(!this._f2){this._f2=true; this.src='{{ asset('assets/img/bourlemont-logo.svg') }}';}" alt="Bourlemont" class="max-h-12 w-auto object-contain mx-auto"/>
             </div>
 
@@ -61,7 +75,7 @@
         </div>
 
         <!-- Perfil de Usuario y Cerrar Sesión -->
-        <div class="p-space-xs rounded-xl bg-surface-container-low/70 flex items-center justify-between border border-white/5">
+        <div class="p-space-xs rounded-xl bg-surface-container-low/70 flex items-center justify-between border border-white/5 mt-4">
             <div class="flex items-center gap-space-sm overflow-hidden">
                 <div class="relative flex-shrink-0">
                     <div class="w-8 h-8 rounded-full bg-primary/20 border border-primary/40 flex items-center justify-center text-primary font-bold text-sm">

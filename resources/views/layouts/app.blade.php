@@ -9,10 +9,8 @@
   <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
   
-  <!-- Enlace de los Íconos -->
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
   
-  <!-- CSS y JS compilados por Vite (Todos los archivos) -->
   @vite([
       'resources/css/app.css', 
       'resources/js/app.js', 
@@ -50,5 +48,33 @@
   @yield('content')
 
   @stack('scripts')
+
+  <!-- Script Global para el Menú Móvil (Hamburguesa) -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const menuBtn = document.getElementById('mobile-menu-btn');
+      const closeBtn = document.getElementById('close-sidebar-btn');
+      const sidebar = document.getElementById('main-sidebar');
+      const backdrop = document.getElementById('sidebar-backdrop');
+
+      function openSidebar() {
+        if (sidebar && backdrop) {
+          sidebar.classList.remove('-translate-x-full');
+          backdrop.classList.remove('hidden');
+        }
+      }
+
+      function closeSidebar() {
+        if (sidebar && backdrop) {
+          sidebar.classList.add('-translate-x-full');
+          backdrop.classList.add('hidden');
+        }
+      }
+
+      if (menuBtn) menuBtn.addEventListener('click', openSidebar);
+      if (closeBtn) closeBtn.addEventListener('click', closeSidebar);
+      if (backdrop) backdrop.addEventListener('click', closeSidebar);
+    });
+  </script>
 </body>
 </html>
