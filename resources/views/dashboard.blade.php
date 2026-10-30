@@ -4,7 +4,6 @@
 
 @push('styles')
   <!--<link rel="stylesheet" href="{{ asset('assets/css/pos.css') }}"> -->
-  <!-- ... -->
   <style>
     @layer base {
       html, body { margin: 0; padding: 0; }
@@ -21,65 +20,69 @@
   @include('layouts.sidebar')
 
   <!-- Contenido Principal -->
-  <div class="pl-72 flex flex-col min-h-screen">
-    <header class="fixed top-0 left-72 right-0 h-16 z-40 bg-surface/85 backdrop-blur-xl border-b border-white/5 px-4 lg:px-6 flex items-center justify-between">
+  <!-- En celular (base) no hay padding izquierdo, en desktop (md) se aplica el pl-72 -->
+  <div class="md:pl-72 flex flex-col min-h-screen">
+    
+    <!-- Header Fijo: en celular ocupa todo el ancho, en desktop empieza a la derecha del sidebar -->
+    <header class="fixed top-0 left-0 md:left-72 right-0 h-16 z-40 bg-surface/85 backdrop-blur-xl border-b border-white/5 px-4 lg:px-6 flex items-center justify-between">
       <div class="flex items-center gap-2 text-on-surface font-semibold text-sm">
         <span class="material-symbols-outlined text-primary text-[20px]">dashboard</span>
         <span>Dashboard de Ventas &amp; Auditoría</span>
       </div>
       <div class="flex items-center gap-3">
-        <div class="flex items-center gap-space-xs bg-surface-container px-space-sm py-space-2xs rounded-full border border-white/5">
+        <div class="hidden sm:flex items-center gap-space-xs bg-surface-container px-space-sm py-space-2xs rounded-full border border-white/5">
           <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
           <span class="font-label-sm text-label-sm text-on-surface uppercase tracking-wider">Turno Activo</span>
         </div>
         <button id="top-logout-btn" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface-variant hover:text-error text-xs font-semibold border border-white/5 transition-all" title="Bloquear / Cerrar Sesión" type="button">
           <span class="material-symbols-outlined text-[16px]">lock</span>
-          <span>Bloquear</span>
+          <span class="hidden sm:inline">Bloquear</span>
         </button>
       </div>
     </header>
 
+    <!-- Contenido principal con padding-top para el header y padding lateral adaptado -->
     <main class="w-full pt-16 bg-surface flex-1">
-      <div class="flex flex-col w-full px-space-xl py-space-lg gap-space-lg">
+      <div class="flex flex-col w-full px-4 py-4 md:px-8 md:py-8 gap-6">
         <!-- Ambient Glow -->
         <div class="relative w-full">
           <div class="absolute -top-12 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl pointer-events-none -z-10"></div>
           <div class="absolute top-48 right-10 w-80 h-80 bg-tertiary-container/10 rounded-full blur-3xl pointer-events-none -z-10"></div>
 
           <!-- Header Section -->
-          <div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md mb-space-lg">
-            <div class="flex flex-col gap-space-2xs">
-              <div class="flex items-center gap-space-xs">
-                <span class="inline-flex items-center gap-1.5 px-space-sm py-0.5 rounded-full bg-surface-container-high text-primary font-label-sm text-label-sm shadow-inner border border-white/5">
+          <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6">
+            <div class="flex flex-col gap-2">
+              <div class="flex flex-wrap items-center gap-2">
+                <span class="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-surface-container-high text-primary font-label-sm text-label-sm shadow-inner border border-white/5">
                   <span class="w-1.5 h-1.5 rounded-full bg-primary animate-ping"></span>
                   <span>En Vivo • Servicio Activo</span>
                 </span>
                 <span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest font-semibold">Bourlemont Sacatepéquez</span>
               </div>
-              <div class="flex items-baseline gap-space-sm">
-                <h1 class="font-headline-xl text-headline-xl text-on-surface tracking-tight font-bold">Dashboard de Ventas &amp; Caja</h1>
+              <div class="flex items-baseline gap-2">
+                <h1 class="text-2xl md:text-3xl text-on-surface tracking-tight font-bold">Dashboard de Ventas &amp; Caja</h1>
               </div>
             </div>
 
             <!-- Botón Exportar Excel -->
-            <div class="flex items-center gap-space-sm self-start md:self-auto">
-              <button class="flex items-center gap-space-xs bg-gradient-to-r from-primary to-primary-fixed-dim text-on-primary font-title-md text-title-md font-bold px-space-lg py-space-sm rounded-xl shadow-[0_4px_20px_rgba(212,175,55,0.3)] hover:brightness-110 active:scale-95 transition-all" id="btn-export-excel" type="button">
-                <span class="material-symbols-outlined text-title-lg">file_download</span>
-                <span>Descargar Auditoría Excel (.xlsx)</span>
+            <div class="flex items-center gap-2 self-start md:self-auto w-full md:w-auto">
+              <button class="w-full md:w-auto flex items-center justify-center gap-2 bg-gradient-to-r from-primary to-primary-fixed-dim text-on-primary font-bold px-4 py-2 rounded-xl shadow-[0_4px_20px_rgba(212,175,55,0.3)] hover:brightness-110 active:scale-95 transition-all" id="btn-export-excel" type="button">
+                <span class="material-symbols-outlined">file_download</span>
+                <span>Descargar Auditoría Excel</span>
               </button>
             </div>
           </div>
 
-          <!-- Grilla de Métricas Principales (5 Columns / Responsive) -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-space-md mb-space-lg">
+          <!-- Grilla de Métricas Principales -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 mb-6">
             <!-- Total Recaudado -->
-            <div class="relative overflow-hidden bg-surface-container/70 backdrop-blur-xl rounded-2xl p-space-md shadow-lg border border-white/5 flex flex-col justify-between group">
+            <div class="relative overflow-hidden bg-surface-container/70 backdrop-blur-xl rounded-2xl p-4 shadow-lg border border-white/5 flex flex-col justify-between group">
               <div class="flex items-center justify-between mb-1">
                 <span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">Total Ventas</span>
                 <span class="material-symbols-outlined text-primary text-title-md">payments</span>
               </div>
               <div class="my-1">
-                <div class="font-currency-display text-2xl font-bold text-primary tracking-tight" id="stat-total">Q 0.00</div>
+                <div class="text-2xl font-bold text-primary tracking-tight" id="stat-total">Q 0.00</div>
                 <div class="text-xs text-on-surface-variant mt-1">Con IVA (12% SAT) inc.</div>
               </div>
               <div class="w-full h-1 bg-surface-container-highest rounded-full overflow-hidden mt-2">
@@ -88,13 +91,13 @@
             </div>
 
             <!-- Cuentas Pagadas -->
-            <div class="relative overflow-hidden bg-surface-container/70 backdrop-blur-xl rounded-2xl p-space-md shadow-lg border border-white/5 flex flex-col justify-between group">
+            <div class="relative overflow-hidden bg-surface-container/70 backdrop-blur-xl rounded-2xl p-4 shadow-lg border border-white/5 flex flex-col justify-between group">
               <div class="flex items-center justify-between mb-1">
                 <span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">Cuentas Pagadas</span>
                 <span class="material-symbols-outlined text-secondary text-title-md">receipt_long</span>
               </div>
               <div class="my-1">
-                <div class="font-currency-display text-2xl font-bold text-on-surface tracking-tight" id="stat-ordenes">0</div>
+                <div class="text-2xl font-bold text-on-surface tracking-tight" id="stat-ordenes">0</div>
                 <div class="text-xs text-on-surface-variant mt-1">Comandas cerradas</div>
               </div>
               <div class="text-xs text-secondary-fixed flex items-center gap-1 mt-2">
@@ -104,13 +107,13 @@
             </div>
 
             <!-- Ticket Promedio -->
-            <div class="relative overflow-hidden bg-surface-container/70 backdrop-blur-xl rounded-2xl p-space-md shadow-lg border border-white/5 flex flex-col justify-between group">
+            <div class="relative overflow-hidden bg-surface-container/70 backdrop-blur-xl rounded-2xl p-4 shadow-lg border border-white/5 flex flex-col justify-between group">
               <div class="flex items-center justify-between mb-1">
                 <span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">Ticket Promedio</span>
                 <span class="material-symbols-outlined text-tertiary text-title-md">price_check</span>
               </div>
               <div class="my-1">
-                <div class="font-currency-display text-2xl font-bold text-primary tracking-tight" id="stat-ticket">Q 0.00</div>
+                <div class="text-2xl font-bold text-primary tracking-tight" id="stat-ticket">Q 0.00</div>
                 <div class="text-xs text-on-surface-variant mt-1">Gasto medio / cuenta</div>
               </div>
               <div class="text-xs text-tertiary flex items-center gap-1 mt-2">
@@ -119,14 +122,14 @@
               </div>
             </div>
 
-            <!-- Comandas Abiertas (Interactivo) -->
-            <div id="card-comandas-abiertas" class="relative overflow-hidden bg-surface-container/70 backdrop-blur-xl rounded-2xl p-space-md shadow-lg border border-white/5 flex flex-col justify-between group cursor-pointer hover:border-amber-400/60 hover:bg-surface-container transition-all hover:scale-[1.01]">
+            <!-- Comandas Abiertas -->
+            <div id="card-comandas-abiertas" class="relative overflow-hidden bg-surface-container/70 backdrop-blur-xl rounded-2xl p-4 shadow-lg border border-white/5 flex flex-col justify-between group cursor-pointer hover:border-amber-400/60 hover:bg-surface-container transition-all hover:scale-[1.01]">
               <div class="flex items-center justify-between mb-1">
                 <span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">Comandas Abiertas</span>
                 <span class="material-symbols-outlined text-amber-400 text-title-md">table_restaurant</span>
               </div>
               <div class="my-1">
-                <div class="font-currency-display text-2xl font-bold text-amber-400 tracking-tight" id="stat-abiertas">0</div>
+                <div class="text-2xl font-bold text-amber-400 tracking-tight" id="stat-abiertas">0</div>
                 <div class="text-xs text-on-surface-variant mt-1">Mesas en consumo activo</div>
               </div>
               <div class="text-xs text-amber-300 flex items-center justify-between mt-2">
@@ -139,13 +142,13 @@
             </div>
 
             <!-- Alertas Críticas -->
-            <div class="relative overflow-hidden bg-surface-container/70 backdrop-blur-xl rounded-2xl p-space-md shadow-lg border border-white/5 flex flex-col justify-between group">
+            <div class="relative overflow-hidden bg-surface-container/70 backdrop-blur-xl rounded-2xl p-4 shadow-lg border border-white/5 flex flex-col justify-between group">
               <div class="flex items-center justify-between mb-1">
                 <span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">Stock Crítico</span>
                 <span class="material-symbols-outlined text-error text-title-md">notification_important</span>
               </div>
               <div class="my-1">
-                <div class="font-currency-display text-2xl font-bold text-error tracking-tight" id="stat-alertas">0</div>
+                <div class="text-2xl font-bold text-error tracking-tight" id="stat-alertas">0</div>
                 <div class="text-xs text-on-surface-variant mt-1">Insumos bajo mínimo ml</div>
               </div>
               <div class="text-xs text-error flex items-center gap-1 mt-2">
@@ -155,18 +158,18 @@
           </div>
 
           <!-- Curva SVG de Ventas en Vivo -->
-          <div class="bg-surface-container/70 backdrop-blur-xl rounded-2xl p-space-lg shadow-xl border border-white/5 mb-space-lg flex flex-col gap-space-sm">
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-xs">
+          <div class="bg-surface-container/70 backdrop-blur-xl rounded-2xl p-4 md:p-6 shadow-xl border border-white/5 mb-6 flex flex-col gap-4">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
               <div>
-                <div class="flex items-center gap-space-xs">
-                  <span class="material-symbols-outlined text-primary text-title-lg">stacked_line_chart</span>
-                  <h2 class="font-headline-md text-title-lg text-on-surface font-bold">Flujo de Facturación y Servicio (Sacatepéquez)</h2>
+                <div class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-primary text-lg">stacked_line_chart</span>
+                  <h2 class="text-lg text-on-surface font-bold">Flujo de Facturación y Servicio</h2>
                 </div>
                 <p class="text-xs text-on-surface-variant">Velocidad de ventas e ingresos por turno en Quetzales (Q)</p>
               </div>
-              <div class="flex items-center gap-space-sm bg-surface-container-low px-3 py-1.5 rounded-full border border-white/5">
-                <span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Estado Fiscal:</span>
-                <span class="text-xs text-primary font-bold">FEL SAT Decreto 27-92 Activo</span>
+              <div class="flex items-center gap-2 bg-surface-container-low px-3 py-1.5 rounded-full border border-white/5">
+                <span class="font-label-sm text-label-sm text-on-surface-variant uppercase hidden sm:inline">Estado Fiscal:</span>
+                <span class="text-xs text-primary font-bold">FEL SAT Activo</span>
               </div>
             </div>
 
@@ -186,11 +189,11 @@
           </div>
 
           <!-- Dos Columnas: Rendimiento Bartenders & Arqueo Ciego -->
-          <div class="grid grid-cols-1 lg:grid-cols-2 gap-space-lg mb-space-lg">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
             <!-- Rendimiento Bartenders -->
-            <div class="bg-surface-container/70 backdrop-blur-2xl p-space-lg rounded-2xl border border-white/5 shadow-xl flex flex-col">
+            <div class="bg-surface-container/70 backdrop-blur-2xl p-4 md:p-6 rounded-2xl border border-white/5 shadow-xl flex flex-col">
               <div class="flex items-center justify-between mb-4 pb-2 border-b border-white/5">
-                <h3 class="font-title-lg text-title-lg font-bold text-on-surface flex items-center gap-2">
+                <h3 class="text-lg font-bold text-on-surface flex items-center gap-2">
                   <span class="material-symbols-outlined text-primary">military_tech</span>
                   <span>Rendimiento de Colaboradores</span>
                 </h3>
@@ -214,9 +217,9 @@
             </div>
 
             <!-- Módulo de Arqueo Ciego de Caja -->
-            <div class="bg-surface-container/70 backdrop-blur-2xl p-space-lg rounded-2xl border border-primary/20 shadow-xl flex flex-col">
+            <div class="bg-surface-container/70 backdrop-blur-2xl p-4 md:p-6 rounded-2xl border border-primary/20 shadow-xl flex flex-col">
               <div class="flex items-center justify-between mb-4 pb-2 border-b border-white/5">
-                <h3 class="font-title-lg text-title-lg font-bold text-on-surface flex items-center gap-2">
+                <h3 class="text-lg font-bold text-on-surface flex items-center gap-2">
                   <span class="material-symbols-outlined text-primary">lock_clock</span>
                   <span>Cierre de Turno (Arqueo Ciego)</span>
                 </h3>
@@ -233,17 +236,17 @@
                     <label class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant block mb-1">
                       Efectivo Físico Contado (Q) *
                     </label>
-                    <input type="number" step="0.01" id="cierre-efectivo" class="input-field" placeholder="0.00" required>
+                    <input type="number" step="0.01" id="cierre-efectivo" class="input-field w-full bg-surface-container-lowest border border-white/10 rounded-xl px-3 py-2 text-on-surface focus:outline-none focus:border-primary" placeholder="0.00" required>
                   </div>
                   <div>
                     <label class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant block mb-1">
                       Vouchers Tarjeta (Q) *
                     </label>
-                    <input type="number" step="0.01" id="cierre-tarjetas" class="input-field" placeholder="0.00" required>
+                    <input type="number" step="0.01" id="cierre-tarjetas" class="input-field w-full bg-surface-container-lowest border border-white/10 rounded-xl px-3 py-2 text-on-surface focus:outline-none focus:border-primary" placeholder="0.00" required>
                   </div>
                 </div>
 
-                <button type="submit" id="btn-cerrar-caja" class="w-full bg-gradient-to-r from-primary to-primary-fixed-dim text-on-primary py-3 rounded-xl font-bold font-title-md text-title-md shadow-lg shadow-primary/25 hover:brightness-110 active:scale-95 transition-all mt-1 disabled:opacity-40 disabled:pointer-events-none">
+                <button type="submit" id="btn-cerrar-caja" class="w-full bg-gradient-to-r from-primary to-primary-fixed-dim text-on-primary py-3 rounded-xl font-bold shadow-lg shadow-primary/25 hover:brightness-110 active:scale-95 transition-all mt-1 disabled:opacity-40 disabled:pointer-events-none">
                   Ejecutar Arqueo Ciego y Cerrar Turno
                 </button>
               </form>
@@ -253,9 +256,9 @@
           </div>
 
           <!-- Historial de Arqueos de Caja -->
-          <div class="bg-surface-container/70 backdrop-blur-2xl p-space-lg rounded-2xl border border-white/5 shadow-xl">
+          <div class="bg-surface-container/70 backdrop-blur-2xl p-4 md:p-6 rounded-2xl border border-white/5 shadow-xl">
             <div class="flex items-center justify-between mb-4 pb-2 border-b border-white/5">
-              <h3 class="font-title-lg text-title-lg font-bold text-on-surface flex items-center gap-2">
+              <h3 class="text-lg font-bold text-on-surface flex items-center gap-2">
                 <span class="material-symbols-outlined text-primary">history_edu</span>
                 <span>Historial de Arqueos de Caja</span>
               </h3>
@@ -267,12 +270,12 @@
                 <thead>
                   <tr class="text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider border-b border-white/5">
                     <th class="py-2.5 px-3">ID</th>
-                    <th class="py-2.5 px-3">Usuario / Sommelier</th>
+                    <th class="py-2.5 px-3">Usuario</th>
                     <th class="py-2.5 px-3">Apertura</th>
                     <th class="py-2.5 px-3">Cierre</th>
                     <th class="py-2.5 px-3">Fondo Inicial</th>
                     <th class="py-2.5 px-3">Declarado Efec.</th>
-                    <th class="py-2.5 px-3">Teórico Sistema</th>
+                    <th class="py-2.5 px-3">Teórico</th>
                     <th class="py-2.5 px-3">Diferencia</th>
                     <th class="py-2.5 px-3">Estado</th>
                   </tr>
