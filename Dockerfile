@@ -19,14 +19,15 @@ WORKDIR /var/www
 COPY . /var/www
 
 # ==========================================
-# COMPILAR VITE (CSS y JS)
+# 1. COMPILAR VITE PRIMERO
 # ==========================================
-# Instalamos las dependencias de Node y compilamos los assets
-RUN npm install && npm run build
-
-# Instalar dependencias de Composer
-#RUN composer install --no-interaction --optimize-autoloader --no-dev
 RUN npm install && VITE_APP_URL="https://bourlemont-pos-main.onrender.com" npm run build
+
+# ==========================================
+# 2. INSTALAR DEPENDENCIAS DE PHP (COMPOSER)
+# ==========================================
+# Usamos --no-scripts para evitar errores de caché durante el build
+RUN composer install --no-interaction --optimize-autoloader --no-dev --no-scripts
 
 # Permisos (Aseguramos que storage y bootstrap/cache sean escribibles)
 RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache && \
