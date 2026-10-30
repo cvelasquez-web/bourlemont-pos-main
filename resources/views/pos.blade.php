@@ -6,7 +6,7 @@
   <!-- El CSS de Vite ya se carga en el layout, aquí solo dejamos los estilos de impresión -->
   <style>
     @layer base {
-      html, body { margin: 0; padding: 0; overflow: hidden; } /* El POS no tiene scroll global */
+      html, body { margin: 0; padding: 0; }
       body { overscroll-behavior: none; }
       main > :first-child { margin-top: 0 !important; }
       main > :last-child { margin-bottom: 0 !important; }
@@ -70,43 +70,43 @@
   <!-- Stitch Luxurious Sidebar -->
   @include('layouts.sidebar')
 
-  <!-- Main View Area (Offset by 72 = 18rem) -->
-  <div class="pl-72 flex flex-col h-screen w-full">
+  <!-- Main View Area (Offset responsive: pl-0 en móvil, pl-72 en desktop) -->
+  <div class="pl-0 lg:pl-72 flex flex-col min-h-screen lg:h-screen w-full overflow-x-hidden">
     <!-- Top Global Header -->
     <header class="h-16 w-full bg-surface/85 backdrop-blur-xl px-4 lg:px-6 flex items-center justify-between border-b border-white/5 z-40 flex-shrink-0">
       <div class="flex items-center gap-2 text-on-surface font-semibold text-sm">
         <span class="material-symbols-outlined text-primary text-[20px]">point_of_sale</span>
-        <span>Terminal Punto de Ventas</span>
+        <span class="truncate">Terminal POS</span>
       </div>
 
       <!-- Estado de Servicio & Bloquear Sesión -->
-      <div class="flex items-center gap-3">
-        <div class="flex items-center gap-1.5 bg-surface-container-low px-3 py-1 rounded-full border border-white/5">
+      <div class="flex items-center gap-2 sm:gap-3">
+        <div class="hidden sm:flex items-center gap-1.5 bg-surface-container-low px-3 py-1 rounded-full border border-white/5">
           <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
           <span class="font-label-sm text-label-sm text-on-surface uppercase tracking-wider">Turno Activo</span>
         </div>
         <button id="top-logout-btn" class="flex items-center gap-1 px-3 py-1.5 rounded-xl bg-surface-container-low hover:bg-surface-container-high text-on-surface-variant hover:text-primary transition-all border border-white/5 text-label-md font-semibold" title="Bloquear Terminal">
           <span class="material-symbols-outlined text-[18px]">lock</span>
-          <span>Bloquear</span>
+          <span class="hidden sm:inline">Bloquear</span>
         </button>
       </div>
     </header>
 
-    <!-- Workstation Container (Split into Catalog & Command Rail) -->
-    <main class="flex-1 flex overflow-hidden p-space-md gap-space-md">
+    <!-- Workstation Container (Stacked vertical en móvil, Split horizontal en PC) -->
+    <main class="flex-1 flex flex-col lg:flex-row overflow-y-auto lg:overflow-hidden p-3 sm:p-space-md gap-3 sm:gap-space-md">
       <!-- Left Catalog Area -->
-      <section class="flex-1 flex flex-col min-w-0 bg-surface-container/60 backdrop-blur-xl rounded-2xl p-space-md border border-white/5 overflow-hidden">
+      <section class="flex-1 flex flex-col min-w-0 bg-surface-container/60 backdrop-blur-xl rounded-2xl p-3 sm:p-space-md border border-white/5 overflow-hidden">
         <!-- Top Action & Search Bar -->
         <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-space-md mb-space-md flex-shrink-0">
           <!-- Search Input -->
           <div class="relative flex-1">
             <span class="material-symbols-outlined absolute left-space-md top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none text-title-md">search</span>
-            <input class="w-full bg-surface-container-lowest/80 pl-11 pr-space-md py-space-sm rounded-full font-body-md text-body-md text-on-surface placeholder:text-on-surface-variant/60 focus:outline-none focus:ring-1 focus:ring-primary shadow-inner transition-all border border-white/5" id="search-input" placeholder="Buscar champagne, licor o cóctel de autor..." type="search"/>
+            <input class="w-full bg-surface-container-lowest/80 pl-11 pr-space-md py-space-sm rounded-full font-body-md text-body-md text-on-surface placeholder:text-on-surface-variant/60 focus:outline-none focus:ring-1 focus:ring-primary shadow-inner transition-all border border-white/5" id="search-input" placeholder="Buscar champagne, licor o cóctel..." type="search"/>
           </div>
         </div>
 
         <!-- Category Horizontal Filter Tabs -->
-        <div class="flex items-center gap-space-xs overflow-x-auto pb-space-xs mb-space-xs flex-shrink-0" id="category-tabs-container">
+        <div class="flex items-center gap-space-xs overflow-x-auto pb-space-xs mb-space-xs flex-shrink-0 whitespace-nowrap" id="category-tabs-container">
           <button class="category-tab active" data-cat="TODOS">Todos</button>
           <button class="category-tab" data-cat="CHAMPAGNE">🍾 Champagne &amp; Cavas</button>
           <button class="category-tab" data-cat="COCTELES_AUTOR">🍹 Cócteles de Autor</button>
@@ -114,12 +114,12 @@
         </div>
 
         <!-- Dynamic Products Grid (#catalogo-productos) -->
-        <div class="products-grid catalogo-productos flex-1 overflow-y-auto" id="catalogo-productos">
+        <div class="products-grid catalogo-productos min-h-[300px] lg:flex-1 overflow-y-auto" id="catalogo-productos">
           <!-- Renderizado dinámico vía pos.js -->
         </div>
 
         <!-- Bottom Sommelier Guarantee Strip -->
-        <div class="flex items-center justify-between bg-surface-container-low/70 p-space-sm rounded-xl gap-space-md mt-space-sm border border-white/5 flex-shrink-0">
+        <div class="hidden sm:flex items-center justify-between bg-surface-container-low/70 p-space-sm rounded-xl gap-space-md mt-space-sm border border-white/5 flex-shrink-0">
           <div class="flex items-center gap-space-sm">
             <span class="material-symbols-outlined text-primary text-title-md">verified</span>
             <span class="font-label-md text-label-md text-on-surface-variant">Deducción algorítmica de mililitros en tiempo real · Precios con IVA (12% SAT) incluido.</span>
@@ -128,7 +128,7 @@
       </section>
 
       <!-- Right Command Rail: Active Table & Comanda -->
-      <aside class="w-full lg:w-[410px] flex flex-col flex-shrink-0 bg-surface-container/85 backdrop-blur-2xl rounded-2xl p-space-md shadow-2xl border border-white/5 overflow-hidden">
+      <aside class="w-full lg:w-[410px] flex flex-col flex-shrink-0 bg-surface-container/85 backdrop-blur-2xl rounded-2xl p-3 sm:p-space-md shadow-2xl border border-white/5 overflow-hidden">
         <!-- Top Rail Header: Ubicación & Selector de Mesa -->
         <div class="flex flex-col gap-space-sm pb-space-sm border-b border-white/5 flex-shrink-0">
           <div class="flex items-center justify-between">
@@ -160,7 +160,7 @@
         </div>
 
         <!-- Ticket Items List -->
-        <div class="flex-1 flex flex-col gap-space-xs overflow-y-auto py-space-sm pr-1" id="order-items-list">
+        <div class="min-h-[150px] lg:flex-1 flex flex-col gap-space-xs overflow-y-auto py-space-sm pr-1" id="order-items-list">
           <div class="empty-order-state" id="empty-order-state">
             <div class="empty-icon">🥂</div>
             <div class="text-on-surface font-semibold text-title-md">Comanda Vacía</div>
@@ -201,112 +201,87 @@
     </main>
   </div>
 
-  <!-- ─── MODAL: Liquidación y Cobro FEL (#modal-cobro) ─── -->
-  <div class="modal-overlay" id="modal-cobro" data-alias="checkout-modal" role="dialog" aria-modal="true" aria-labelledby="checkout-modal-title">
+  <!-- MODAL DE PAGO (Checkout) -->
+  <div class="modal-overlay" id="checkout-modal">
     <div class="modal-content">
       <div class="modal-header">
-        <h3 class="modal-title flex items-center gap-2" id="checkout-modal-title">
-          <span class="material-symbols-outlined text-primary">payments</span>
-          <span>Liquidación &amp; Cobro</span>
-        </h3>
-        <button class="modal-close" aria-label="Cerrar">&times;</button>
+        <h2 class="modal-title">Cobrar Orden</h2>
+        <button class="modal-close" onclick="document.getElementById('checkout-modal').classList.remove('active')">&times;</button>
       </div>
+      <div class="flex flex-col gap-4">
+        <div class="flex justify-between items-center text-lg font-bold text-on-surface">
+          <span>Total a Pagar:</span>
+          <span class="text-primary" id="checkout-total-display">Q 0.00</span>
+        </div>
+        
+        <div>
+          <label class="font-label-sm text-on-surface-variant uppercase tracking-wider block mb-2">Método de Pago</label>
+          <div class="payment-methods-grid">
+            <button class="payment-method-btn active" data-method="EFECTIVO">
+              <span class="material-symbols-outlined">payments</span>
+              <span>Efectivo</span>
+            </button>
+            <button class="payment-method-btn" data-method="TARJETA">
+              <span class="material-symbols-outlined">credit_card</span>
+              <span>Tarjeta</span>
+            </button>
+            <button class="payment-method-btn" data-method="TRANSFERENCIA">
+              <span class="material-symbols-outlined">account_balance</span>
+              <span>Transf.</span>
+            </button>
+          </div>
+        </div>
 
-      <!-- Método de Pago -->
-      <div class="mb-4">
-        <label class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant block mb-2">
-          Método de Pago
-        </label>
-        <div class="payment-methods-grid">
-          <button type="button" class="payment-method-btn active" data-method="EFECTIVO">
-            <span class="material-symbols-outlined text-2xl text-primary">payments</span>
-            <span>Efectivo</span>
-          </button>
-          <button type="button" class="payment-method-btn" data-method="TARJETA_VISA">
-            <span class="material-symbols-outlined text-2xl text-primary">credit_card</span>
-            <span>Tarjeta Visa</span>
-          </button>
-          <button type="button" class="payment-method-btn" data-method="TARJETA_MASTERCARD">
-            <span class="material-symbols-outlined text-2xl text-primary">contactless</span>
-            <span>Mastercard</span>
-          </button>
+        <div>
+          <label class="font-label-sm text-on-surface-variant uppercase tracking-wider block mb-2">Propina Sugerida</label>
+          <div class="flex gap-2" id="tip-buttons">
+            <button class="tip-btn active" data-tip="0">0%</button>
+            <button class="tip-btn" data-tip="0.10">10%</button>
+            <button class="tip-btn" data-tip="0.15">15%</button>
+          </div>
         </div>
-      </div>
 
-      <!-- Propina del Servicio -->
-      <div class="mb-4">
-        <label class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant block mb-2">
-          Propina Sugerida Sommelier
-        </label>
-        <div class="flex gap-2">
-          <button type="button" class="tip-btn" data-tip="0">0%</button>
-          <button type="button" class="tip-btn active" data-tip="10">10%</button>
-          <button type="button" class="tip-btn" data-tip="15">15%</button>
-          <button type="button" class="tip-btn" data-tip="20">20%</button>
-        </div>
-      </div>
-
-      <!-- Datos Receptor FEL SAT (Guatemala) -->
-      <div class="mb-4">
-        <label class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant block mb-2">
-          Facturación Electrónica SAT (FEL)
-        </label>
-        <div class="flex gap-2 mb-2">
-          <input type="text" id="fel-nit" class="input-field flex-1" placeholder="NIT o CF" value="CF" autocomplete="off" inputmode="numeric">
-          <button type="button" id="btn-cf-fast" class="btn btn-subtle-gold px-4 font-bold" title="Asignar Consumidor Final">CF</button>
-        </div>
-        <input type="text" id="fel-nombre" class="input-field" placeholder="Nombre Receptor" value="CONSUMIDOR FINAL" autocomplete="off">
-      </div>
-
-      <!-- Resumen Financiero -->
-      <div class="bg-surface-container-lowest p-4 rounded-xl mb-4 border border-white/5">
-        <div class="flex justify-between text-body-md text-on-surface-variant mb-1">
-          <span>Consumo de Carta:</span>
-          <span id="modal-subtotal" class="text-on-surface font-semibold">Q 0.00</span>
-        </div>
-        <div class="flex justify-between text-body-md text-on-surface-variant mb-2">
-          <span>Propina:</span>
-          <span id="modal-tip" class="text-on-surface font-semibold">Q 0.00</span>
-        </div>
-        <div class="flex justify-between items-baseline pt-2 border-t border-white/10">
-          <span class="font-title-lg text-title-lg text-on-surface font-bold uppercase">Total a Pagar:</span>
-          <span id="modal-total" class="font-currency-display text-currency-display text-primary font-bold">Q 0.00</span>
-        </div>
-      </div>
-
-      <!-- Botones de Acción -->
-      <div class="flex gap-3">
-        <button type="button" class="btn modal-cancel flex-1">Cancelar</button>
-        <button type="button" id="confirm-payment-btn" class="btn btn-gold flex-[2] text-title-md font-bold">
-          Confirmar y Emitir Factura FEL
-        </button>
+        <button class="btn btn-gold w-full mt-2" id="btn-confirmar-pago">Confirmar Pago</button>
       </div>
     </div>
   </div>
 
-  <!-- ─── MODAL: Ticket Térmico ESC/POS (#ticket-modal) ─── -->
-  <div id="ticket-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="ticket-modal-title">
-    <div class="modal-content max-w-[480px]">
+  <!-- MODAL DE TICKET -->
+  <div class="modal-overlay" id="ticket-modal">
+    <div class="modal-content" style="max-width: 400px;">
       <div class="modal-header">
-        <h3 class="modal-title flex items-center gap-2" id="ticket-modal-title">
-          <span class="material-symbols-outlined text-primary">print</span>
-          <span>Factura Electrónica &amp; Ticket</span>
-        </h3>
-        <button class="modal-close" aria-label="Cerrar">&times;</button>
+        <h2 class="modal-title">Ticket de Venta</h2>
+        <button class="modal-close" onclick="document.getElementById('ticket-modal').classList.remove('active')">&times;</button>
       </div>
-
-      <div id="ticket-inventory-alerts" class="p-3 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-300 text-sm mb-3" style="display: none;"></div>
-
-      <pre id="ticket-content-box" class="thermal-ticket-box"></pre>
-
-      <div id="ticket-qr-container" class="ticket-qr-container"></div>
-
-      <div class="flex gap-3 mt-4">
-        <button type="button" class="btn modal-close flex-1">Cerrar</button>
-        <button type="button" id="print-ticket-btn" class="btn btn-gold flex-[2] font-bold">
-          🖨️ Imprimir Ticket (80mm)
-        </button>
+      <div id="ticket-printable-area">
+        <div class="thermal-ticket-box" id="ticket-content-box">
+          <!-- El contenido del ticket se genera con JS -->
+        </div>
+        <div id="ticket-qr-container">
+          <!-- El QR se genera con JS -->
+        </div>
+      </div>
+      <div class="flex gap-2 mt-4">
+        <button class="btn modal-cancel flex-1" onclick="document.getElementById('ticket-modal').classList.remove('active')">Cerrar</button>
+        <button class="btn btn-gold flex-1" onclick="window.print()">Imprimir</button>
       </div>
     </div>
   </div>
+
+  <!-- MODAL DE ALERTAS DE INVENTARIO -->
+  <div class="modal-overlay" id="inventory-alerts-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title">Alertas de Inventario</h2>
+        <button class="modal-close" onclick="document.getElementById('inventory-alerts-modal').classList.remove('active')">&times;</button>
+      </div>
+      <div id="ticket-inventory-alerts" class="max-h-[60vh] overflow-y-auto">
+        <!-- Alertas generadas por JS -->
+      </div>
+      <div class="flex gap-2 mt-4">
+        <button class="btn modal-cancel w-full" onclick="document.getElementById('inventory-alerts-modal').classList.remove('active')">Entendido</button>
+      </div>
+    </div>
+  </div>
+
 @endsection
