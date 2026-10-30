@@ -66,6 +66,11 @@
         width: 100% !important;
         max-width: 100% !important;
       }
+
+      /* 🔥 IMPORTANTE: Espacio superior para que el botón flotante no tape el contenido */
+      body {
+        padding-top: 4rem !important; 
+      }
     }
   </style>
   
@@ -73,6 +78,11 @@
 </head>
 <body class="bg-surface font-body-md text-on-surface antialiased min-h-screen">
   
+  <!-- Botón Hamburguesa Global (Flotante para vistas que no tienen header propio) -->
+  <button id="mobile-menu-btn" type="button" class="lg:hidden fixed top-3 left-3 z-[60] p-2 rounded-xl bg-surface-container-low hover:bg-surface-container-high text-on-surface border border-white/5 flex items-center justify-center transition-all shadow-lg">
+    <span class="material-symbols-outlined text-[24px]">menu</span>
+  </button>
+
   @yield('content')
 
   @stack('scripts')
