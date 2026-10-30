@@ -2,11 +2,11 @@ FROM php:8.3-fpm
 
 # Instalar dependencias y Nginx
 RUN apt-get update && apt-get install -y \
-    git curl libpng-dev libonig-dev libxml2-dev zip unzip libpq-dev nginx \
+    git curl libpng-dev libonig-dev libxml2-dev zip unzip libpq-dev libzip-dev nginx \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Instalar extensiones PHP
-RUN docker-php-ext-install pdo pdo_pgsql pgsql mbstring exif pcntl bcmath gd
+# Instalar extensiones PHP (incluida ZIP)
+RUN docker-php-ext-install pdo pdo_pgsql pgsql mbstring exif pcntl bcmath gd zip
 
 # Instalar Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
