@@ -1,4 +1,5 @@
-<aside class="fixed left-0 top-0 h-full w-72 p-space-md z-50 pointer-events-none">
+<!-- Se oculta en móviles (hidden) y se muestra en pantallas medianas o grandes (md:block) -->
+<aside class="hidden md:block fixed left-0 top-0 h-full w-72 p-space-md z-50 pointer-events-none">
     <div class="h-full w-full bg-surface-container/85 backdrop-blur-2xl rounded-2xl p-space-md flex flex-col justify-between shadow-[0_8px_32px_rgba(0,0,0,0.6)] border border-white/5 pointer-events-auto">
         <div class="flex flex-col gap-space-lg">
             <!-- Logo -->
@@ -23,13 +24,13 @@
                     </a>
                 @endif
 
-                <!-- 3. Inventario (Visible para ambos) -->
+                <!-- 3. Inventario -->
                 <a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-xl transition-all duration-200 {{ request()->is('inventario') ? 'bg-primary-container text-on-primary font-title-md shadow-[0_0_20px_rgba(212,175,55,0.25)]' : 'font-body-lg text-body-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface' }}" href="/inventario">
                     <span class="material-symbols-outlined text-title-lg">inventory_2</span>
                     <span>Inventario en ml</span>
                 </a>
 
-                <!-- 4. Recetas (Visible para ambos) -->
+                <!-- 4. Recetas -->
                 <a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-xl transition-all duration-200 {{ request()->is('recetas') ? 'bg-primary-container text-on-primary font-title-md shadow-[0_0_20px_rgba(212,175,55,0.25)]' : 'font-body-lg text-body-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface' }}" href="/recetas">
                     <span class="material-symbols-outlined text-title-lg">liquor</span>
                     <span>Recetas &amp; Escandallos</span>
@@ -69,7 +70,6 @@
                     <span class="absolute bottom-0 right-0 w-2 h-2 rounded-full bg-emerald-400 ring-2 ring-surface-container-low"></span>
                 </div>
                 <div class="flex flex-col min-w-0">
-                    <!-- ✅ IMPRIMIMOS LOS DATOS DIRECTO DESDE LARAVEL (SIN JS) -->
                     <span class="font-title-md text-title-md text-on-surface truncate leading-snug" id="header-user-name">
                         {{ auth()->user()->nombre ?? 'Invitado' }}
                     </span>
@@ -79,7 +79,6 @@
                 </div>
             </div>
             
-            <!-- Botón de Bloquear / Cerrar Sesión -->
             <button type="button" id="logout-btn" class="p-1 rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors" title="Bloquear Sesión">
                 <span class="material-symbols-outlined text-title-lg">lock</span>
             </button>
