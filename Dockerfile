@@ -5,7 +5,7 @@ RUN apt-get update && apt-get install -y \
     git curl libpng-dev libonig-dev libxml2-dev zip unzip libpq-dev libzip-dev nginx \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Instalar extensiones PHP (incluida ZIP)
+# Instalar extensiones PHP (incluida ZIP y PostgreSQL)
 RUN docker-php-ext-install pdo pdo_pgsql pgsql mbstring exif pcntl bcmath gd zip
 
 # Instalar Composer
@@ -14,8 +14,24 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 # Directorio de trabajo
 WORKDIR /var/www
 
-# Copiar proyecto e instalar dependencias
+# Copiar proyecto
 COPY . /var/www
+
+# ==========================================
+# CREAR ARCHIVO .ENV PARA PRODUCCIÓN
+# ==========================================
+RUN touch .env && \
+    echo "APP_NAME=Laravel" >> .env && \
+    echo "APP_ENV=production" >> .env && \
+    echo "APP_DEBUG=false" >> .env && \
+    echo "APP_URL=https://bourlemont-pos-main.onrender.com" >> .env && \
+    echo "DB_CONNECTION=pgsql" >> .env && \
+    echo "DB_URL=\${DATABASE_URL}" >> .env && \
+    echo "SESSION_DRIVER=file" >> .env && \
+    echo "CACHE_STORE=file" >> .env && \
+    echo "QUEUE_CONNECTION=sync" >> .env
+
+# Instalar dependencias de Composer
 RUN composer install --no-interaction --optimize-autoloader --no-dev
 
 # Permisos
