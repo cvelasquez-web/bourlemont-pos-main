@@ -21,7 +21,7 @@ RUN composer install --no-interaction --optimize-autoloader --no-dev
 # Permisos
 RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
 
-# Configuración interna de Nginx para Render (Puerto 10000)
+# Configuración interna de Nginx para Render (Puerto 10000 y TCP 9000)
 RUN echo "server { \n\
     listen 10000; \n\
     root /var/www/public; \n\
@@ -31,12 +31,12 @@ RUN echo "server { \n\
     } \n\
     location ~ \.php$ { \n\
         include snippets/fastcgi-php.conf; \n\
-        fastcgi_pass unix:/var/run/php/php8.3-fpm.sock; \n\
+        fastcgi_pass 127.0.0.1:9000; \n\
     } \n\
 }" > /etc/nginx/sites-available/default
 
-# Exponer puerto (Render usa el 10000)
+# Exponer puerto
 EXPOSE 10000
 
-# Iniciar Nginx y PHP-FPM
-CMD service nginx start && php-fpm
+# Iniciar PHP-FPM en segundo plano y luego Nginx en primer plano
+CMD php-fpm -D && nginx -g "daemon off;"
