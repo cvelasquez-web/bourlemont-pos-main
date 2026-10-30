@@ -1,0 +1,13 @@
+
+========== RESUMEN DE LA CORRIDA ==========
+Estado general: passed
+Total: 16 | Pasaron: 16 | Fallaron: 0 | Omitidos: 0
+Duración: 210.0s
+
+--- 5 tests más lentos ---
+  34.0s  dashboard-reflejo.spec.js › Dashboard Reflejo › Verificar total
+  16.9s  usuarios.spec.js › Gestión de Usuarios › Crear bartender
+  14.8s  admin-auth.spec.js › Flujo de Administrador › Carlos entra con PIN al Dashboard
+  14.4s  auditoria.spec.js › Auditoría › Editar pago
+  12.4s  descarga-excel.spec.js › Descarga Excel › Generar Excel
+===========================================

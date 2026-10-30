@@ -1,0 +1,1003 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\wamp64\\www\\Proyectos_Laravel\\Bourlemont-pos-main\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "--trace",
+      "on"
+    ],
+    "configFile": "C:\\wamp64\\www\\Proyectos_Laravel\\Bourlemont-pos-main\\playwright.config.js",
+    "rootDir": "C:/wamp64/www/Proyectos_Laravel/Bourlemont-pos-main/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "C:/wamp64/www/Proyectos_Laravel/Bourlemont-pos-main/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "C:/wamp64/www/Proyectos_Laravel/Bourlemont-pos-main/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "C:\\wamp64\\www\\Proyectos_Laravel\\Bourlemont-pos-main\\test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "chromium",
+        "testDir": "C:\\wamp64\\www\\Proyectos_Laravel\\Bourlemont-pos-main\\e2e",
+        "snapshotDir": "C:\\wamp64\\www\\Proyectos_Laravel\\Bourlemont-pos-main\\e2e",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 30000,
+        "use": {
+          "baseURL": "http://127.0.0.1:8000",
+          "headless": false,
+          "screenshot": "only-on-failure",
+          "trace": "on",
+          "video": "retain-on-failure",
+          "actionTimeout": 60000,
+          "navigationTimeout": 60000,
+          "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36",
+          "viewport": {
+            "width": 1280,
+            "height": 720
+          },
+          "screen": {
+            "width": 1920,
+            "height": 1080
+          },
+          "deviceScaleFactor": 1,
+          "isMobile": false,
+          "hasTouch": false,
+          "defaultBrowserType": "chromium"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "chromium"
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "html",
+        {
+          "open": "never"
+        }
+      ],
+      [
+        "json",
+        {
+          "outputFile": "reportes/resultado.json"
+        }
+      ],
+      [
+        "C:\\wamp64\\www\\Proyectos_Laravel\\Bourlemont-pos-main\\e2e\\reporters\\resumen.js",
+        null
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 1,
+    "webServer": {
+      "command": "php artisan serve",
+      "url": "http://127.0.0.1:8000",
+      "reuseExistingServer": true,
+      "timeout": 60000
+    }
+  },
+  "suites": [
+    {
+      "title": "admin-auth.spec.js",
+      "file": "admin-auth.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Flujo de Administrador",
+          "file": "admin-auth.spec.js",
+          "line": 3,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Carlos entra con PIN al Dashboard",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 14785,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-30T02:19:57.932Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\wamp64\\www\\Proyectos_Laravel\\Bourlemont-pos-main\\test-results\\admin-auth-Flujo-de-Admini-4842f--entra-con-PIN-al-Dashboard-chromium\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a6b4d68637be39e9842c-807bed49989120fe4482",
+              "file": "admin-auth.spec.js",
+              "line": 4,
+              "column": 3
+            },
+            {
+              "title": "Carlos entra con contraseña",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 6411,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-30T02:20:15.308Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\wamp64\\www\\Proyectos_Laravel\\Bourlemont-pos-main\\test-results\\admin-auth-Flujo-de-Admini-3c765-Carlos-entra-con-contraseña-chromium\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a6b4d68637be39e9842c-a47517949c27686bb753",
+              "file": "admin-auth.spec.js",
+              "line": 16,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "anulacion-comanda.spec.js",
+      "file": "anulacion-comanda.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Anulación",
+          "file": "anulacion-comanda.spec.js",
+          "line": 3,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Anular",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 11239,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-30T02:20:22.496Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\wamp64\\www\\Proyectos_Laravel\\Bourlemont-pos-main\\test-results\\anulacion-comanda-Anulación-Anular-chromium\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "53faf93ffe93fccd55f1-878bf37b71eba55173d2",
+              "file": "anulacion-comanda.spec.js",
+              "line": 4,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "auditoria.spec.js",
+      "file": "auditoria.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Auditoría",
+          "file": "auditoria.spec.js",
+          "line": 3,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Editar pago",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 14435,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-30T02:20:35.101Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\wamp64\\www\\Proyectos_Laravel\\Bourlemont-pos-main\\test-results\\auditoria-Auditoría-Editar-pago-chromium\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "1c27b67ce65bcd18b27e-e2095f038272ed1cfad9",
+              "file": "auditoria.spec.js",
+              "line": 4,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "bartenders.spec.js",
+      "file": "bartenders.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Flujo de Bartenders",
+          "file": "bartenders.spec.js",
+          "line": 4,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Mateo inicia sesión",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 6555,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-30T02:20:51.582Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\wamp64\\www\\Proyectos_Laravel\\Bourlemont-pos-main\\test-results\\bartenders-Flujo-de-Bartenders-Mateo-inicia-sesión-chromium\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "affbc440329f8c8743af-c3d16846f94250197371",
+              "file": "bartenders.spec.js",
+              "line": 12,
+              "column": 5
+            },
+            {
+              "title": "Sofia inicia sesión",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 8473,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-30T02:20:59.520Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\wamp64\\www\\Proyectos_Laravel\\Bourlemont-pos-main\\test-results\\bartenders-Flujo-de-Bartenders-Sofia-inicia-sesión-chromium\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "affbc440329f8c8743af-32edb19f2beba31676a3",
+              "file": "bartenders.spec.js",
+              "line": 12,
+              "column": 5
+            },
+            {
+              "title": "Alejandro inicia sesión",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 8518,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-30T02:21:09.236Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\wamp64\\www\\Proyectos_Laravel\\Bourlemont-pos-main\\test-results\\bartenders-Flujo-de-Bartenders-Alejandro-inicia-sesión-chromium\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "affbc440329f8c8743af-4c519b5a210666a464d7",
+              "file": "bartenders.spec.js",
+              "line": 12,
+              "column": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "cobro-propina.spec.js",
+      "file": "cobro-propina.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Cobro Propina",
+          "file": "cobro-propina.spec.js",
+          "line": 3,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Cobro",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 7533,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-30T02:21:19.152Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\wamp64\\www\\Proyectos_Laravel\\Bourlemont-pos-main\\test-results\\cobro-propina-Cobro-Propina-Cobro-chromium\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "321b93c4d0d2c0635c30-96f27d06897fbb9d8187",
+              "file": "cobro-propina.spec.js",
+              "line": 4,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "dashboard-reflejo.spec.js",
+      "file": "dashboard-reflejo.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Dashboard Reflejo",
+          "file": "dashboard-reflejo.spec.js",
+          "line": 44,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Verificar total",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 33958,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "Total antes: Q 44200.00\n"
+                        },
+                        {
+                          "text": "Peticiones al cobrar:\nPOST 201 http://127.0.0.1:8000/api/v1/ordenes {\"numero_mesa\":\"Barra 360 - Asiento 1\",\"id_usuario_creacion\":1,\"estado\":\"ABIERTA\",\"total\":\"2600.00\",\"fecha_creacion\":\"2026-10-29T20:21:45.000000Z\",\"id_orden\":23,\"items\":[{\"id\":23,\"id_orden\":23,\"id_pro\nPOST 200 http://127.0.0.1:8000/api/v1/ordenes/23/cobrar {\"success\":true,\"mensaje\":\"Orden cobrada exitosamente y stock actualizado.\",\"orden\":{\"id_orden\":23,\"numero_mesa\":\"Barra 360 - Asiento 1\",\"id_usuario_creacion\":1,\"estado\":\"PAGADA\",\"total\":\"2600.00\",\"fe\n"
+                        },
+                        {
+                          "text": "Total después: Q 46800.00\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-30T02:21:27.852Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\wamp64\\www\\Proyectos_Laravel\\Bourlemont-pos-main\\test-results\\dashboard-reflejo-Dashboard-Reflejo-Verificar-total-chromium\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "67fcbab149c6ea31978f-ce84d80bcd61f15f631f",
+              "file": "dashboard-reflejo.spec.js",
+              "line": 45,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "descarga-excel.spec.js",
+      "file": "descarga-excel.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Descarga Excel",
+          "file": "descarga-excel.spec.js",
+          "line": 3,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Generar Excel",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 12381,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-30T02:22:03.294Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\wamp64\\www\\Proyectos_Laravel\\Bourlemont-pos-main\\test-results\\descarga-excel-Descarga-Excel-Generar-Excel-chromium\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "4e1d898bd5cddaa7310e-e386e1466a4dcee75059",
+              "file": "descarga-excel.spec.js",
+              "line": 4,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "inventario.spec.js",
+      "file": "inventario.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Inventario",
+          "file": "inventario.spec.js",
+          "line": 3,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Editar stock",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 8763,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-30T02:22:16.675Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\wamp64\\www\\Proyectos_Laravel\\Bourlemont-pos-main\\test-results\\inventario-Inventario-Editar-stock-chromium\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "f4cf5e785899667a54bc-0a425c5a47e73b9db215",
+              "file": "inventario.spec.js",
+              "line": 4,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "login-admin-password.spec.js",
+      "file": "login-admin-password.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "Login Admin con Contraseña",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 7197,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-30T02:22:26.561Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "C:\\wamp64\\www\\Proyectos_Laravel\\Bourlemont-pos-main\\test-results\\login-admin-password-Login-Admin-con-Contraseña-chromium\\trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "7e0ea391f8ff6bc0d99c-098505a989442d3dae59",
+          "file": "login-admin-password.spec.js",
+          "line": 3,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "pos.spec.js",
+      "file": "pos.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Flujo del POS",
+          "file": "pos.spec.js",
+          "line": 3,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Cobrar un producto",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 8879,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-30T02:22:34.455Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\wamp64\\www\\Proyectos_Laravel\\Bourlemont-pos-main\\test-results\\pos-Flujo-del-POS-Cobrar-un-producto-chromium\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "b21c222f3a58619ed15e-861aaf93e21721a098e5",
+              "file": "pos.spec.js",
+              "line": 13,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "recuperacion-pin.spec.js",
+      "file": "recuperacion-pin.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Recuperación de PIN (Flujo de Administrador)",
+          "file": "recuperacion-pin.spec.js",
+          "line": 3,
+          "column": 6,
+          "specs": [
+            {
+              "title": "El administrador puede entrar con credenciales y no rompe el teclado",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 9622,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-30T02:22:44.121Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\wamp64\\www\\Proyectos_Laravel\\Bourlemont-pos-main\\test-results\\recuperacion-pin-Recuperac-ef0af-iales-y-no-rompe-el-teclado-chromium\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "4a3c19cef98f3875afcb-1c01aa8f8fc14675f705",
+              "file": "recuperacion-pin.spec.js",
+              "line": 15,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "usuarios.spec.js",
+      "file": "usuarios.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Gestión de Usuarios",
+          "file": "usuarios.spec.js",
+          "line": 4,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Crear bartender",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 16950,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "Guardar usuario: \u001b[33m201\u001b[39m {\"success\":true,\"mensaje\":\"Usuario creado exitosamente.\",\"usuario\":{\"nombre\":\"Bartender 1793326982440\",\"rol\":\"BARTENDER\",\"foto_url\":null,\"activo\":true,\"id_usuario\":10}}\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-30T02:22:54.487Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\wamp64\\www\\Proyectos_Laravel\\Bourlemont-pos-main\\test-results\\usuarios-Gestión-de-Usuarios-Crear-bartender-chromium\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3e98ff54e5ccf85d4b47-d98e0bdb0aa417cf24d0",
+              "file": "usuarios.spec.js",
+              "line": 5,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "validacion-errores.spec.js",
+      "file": "validacion-errores.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Validación",
+          "file": "validacion-errores.spec.js",
+          "line": 3,
+          "column": 6,
+          "specs": [
+            {
+              "title": "PIN corto",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 10298,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-30T02:23:12.253Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\wamp64\\www\\Proyectos_Laravel\\Bourlemont-pos-main\\test-results\\validacion-errores-Validación-PIN-corto-chromium\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "969d91422ee09f4d095c-a31379a17f7b59ab29e1",
+              "file": "validacion-errores.spec.js",
+              "line": 4,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-30T02:19:54.638Z",
+    "duration": 209963.44,
+    "expected": 16,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

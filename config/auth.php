@@ -1,6 +1,6 @@
 <?php
-
-use App\Models\User;
+//use App\Models\User;
+use App\Models\Usuario;
 
 return [
 
@@ -64,7 +64,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => env('AUTH_MODEL', User::class),
+            'model' => env('AUTH_MODEL', Usuario::class),
         ],
 
         // 'users' => [
@@ -113,5 +113,18 @@ return [
     */
 
     'password_timeout' => env('AUTH_PASSWORD_TIMEOUT', 10800),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Login Throttle (intentos por minuto)
+    |--------------------------------------------------------------------------
+    |
+    | Máximo de peticiones por minuto, por IP, a las rutas de login por PIN
+    | y de administrador. En producción se queda en 5; en desarrollo y
+    | pruebas se puede subir con LOGIN_THROTTLE en el archivo .env.
+    |
+    */
+
+    'login_throttle' => env('LOGIN_THROTTLE', 5),
 
 ];

@@ -1,0 +1,219 @@
+﻿├── app
+├── bootstrap
+├── config
+├── database
+├── e2e
+├── playwright-report
+├── public
+├── resources
+├── routes
+├── test-results
+├── tests
+├── .editorconfig
+├── .env
+├── .env.example
+├── .gitattributes
+├── .gitignore
+├── .npmrc
+├── .phpunit.result.cache
+├── AGENTS.md
+├── artisan
+├── CLAUDE.md
+├── composer.json
+├── composer.lock
+├── estructura_proyecto.txt
+├── package-lock.json
+├── package.json
+├── phpunit.xml
+├── playwright.config.js
+├── prod_7fd977f794be.jpg
+├── README.md
+├── vite.config.js
+  ├── Enums
+  ├── Http
+  ├── Models
+  ├── Providers
+  ├── Services
+    ├── CategoriaProducto.php
+    ├── EstadoArqueo.php
+    ├── EstadoFEL.php
+    ├── EstadoOrden.php
+    ├── MetodoPago.php
+    ├── RolUsuario.php
+    ├── TipoProducto.php
+    ├── Controllers
+    ├── Middleware
+    ├── Requests
+      ├── Api
+      ├── Controller.php
+        ├── V1
+          ├── AuditoriaController.php
+          ├── AuthController.php
+          ├── InventarioController.php
+          ├── OrdenController.php
+          ├── ReporteController.php
+          ├── UsuarioController.php
+      ├── RolMiddleware.php
+      ├── Api
+        ├── V1
+          ├── AgregarIngredienteRequest.php
+          ├── AsignarRecetaRequest.php
+          ├── CobrarOrdenRequest.php
+          ├── LoginAdminRequest.php
+          ├── LoginPinRequest.php
+          ├── StoreOrdenRequest.php
+          ├── StoreProductoRequest.php
+          ├── StoreUsuarioRequest.php
+          ├── UpdateOrdenRequest.php
+          ├── UpdateProductoRequest.php
+          ├── UpdateUsuarioRequest.php
+    ├── ArqueoCaja.php
+    ├── BitacoraAuditoria.php
+    ├── DetalleOrden.php
+    ├── FacturaFel.php
+    ├── Orden.php
+    ├── Producto.php
+    ├── RecetaEscandallo.php
+    ├── TransaccionPago.php
+    ├── Usuario.php
+    ├── AppServiceProvider.php
+    ├── EscandalloService.php
+    ├── TicketService.php
+  ├── app.php
+  ├── providers.php
+  ├── app.php
+  ├── auth.php
+  ├── cache.php
+  ├── database.php
+  ├── filesystems.php
+  ├── logging.php
+  ├── mail.php
+  ├── queue.php
+  ├── sanctum.php
+  ├── services.php
+  ├── session.php
+  ├── factories
+  ├── migrations
+  ├── seeders
+  ├── .gitignore
+  ├── database.sqlite
+    ├── UserFactory.php
+    ├── 0001_01_01_000000_create_users_table.php
+    ├── 0001_01_01_000001_create_cache_table.php
+    ├── 0001_01_01_000002_create_jobs_table.php
+    ├── 2026_10_18_000001_create_usuarios_table.php
+    ├── 2026_10_18_000002_create_productos_table.php
+    ├── 2026_10_18_000003_create_ordenes_table.php
+    ├── 2026_10_18_000004_create_detalle_orden_table.php
+    ├── 2026_10_18_000005_create_transacciones_pago_table.php
+    ├── 2026_10_18_000006_create_recetas_escandallos_table.php
+    ├── 2026_10_18_000007_create_arqueos_caja_table.php
+    ├── 2026_10_18_000008_create_bitacora_auditoria_table.php
+    ├── 2026_10_18_000009_create_facturas_fel_table.php
+    ├── 2026_10_18_021121_create_personal_access_tokens_table.php
+    ├── BourlemontSeeder.php
+    ├── DatabaseSeeder.php
+  ├── admin-auth.spec.js
+  ├── auditoria.spec.js
+  ├── bartenders.spec.js
+  ├── dashboard-reflejo.spec.js
+  ├── inventario.spec.js
+  ├── pos.spec.js
+  ├── recuperacion-pin.spec.js
+  ├── usuarios.spec.js
+  ├── data
+  ├── trace
+  ├── index.html
+    ├── 2d2c1b79a1737becc8ff400fce808685fe501b29.zip
+    ├── 340a2c30c444f8c3c2ba5214a24fd148b47c20d2.zip
+    ├── c4adc5eb4fbc645ecbe4c3e237d9810300b2ab05.zip
+    ├── assets
+    ├── codeMirrorModule.-QdMvsKi.css
+    ├── codicon.DCmgc-ay.ttf
+    ├── defaultSettingsView.C8BeHuxd.css
+    ├── index.B_TqY17P.css
+    ├── index.html
+    ├── index.oNry3Hjv.js
+    ├── manifest.webmanifest
+    ├── playwright-logo.svg
+    ├── snapshot.B_Jk1wbt.js
+    ├── snapshot.html
+    ├── sw.bundle.js
+    ├── uiMode.CyMfwkXJ.css
+    ├── uiMode.CYwC_gH1.js
+    ├── uiMode.html
+    ├── xtermModule.kHJ-D0s7.css
+      ├── codeMirrorModule-BEB2e8M3.js
+      ├── defaultSettingsView-D-g2vrvf.js
+      ├── urlMatch-L3liM589.js
+  ├── assets
+  ├── build
+  ├── .htaccess
+  ├── favicon.ico
+  ├── fonts-manifest.dev.json
+  ├── hot
+  ├── index.php
+  ├── robots.txt
+    ├── css
+    ├── img
+    ├── js
+      ├── bourlemont-logo.svg
+      ├── champagne-brut.jpg
+      ├── cocktail-fallback.svg
+      ├── logo.svg
+      ├── logo1.png
+    ├── assets
+    ├── fonts-manifest.json
+    ├── manifest.json
+      ├── app-CXHxEDAE.js
+      ├── app-OtFnQUHc.css
+      ├── fonts-C9MNnjVw.css
+      ├── instrument-sans-400-normal-D1W7dsQl.woff
+      ├── instrument-sans-400-normal-DRC__1Mx.woff2
+      ├── instrument-sans-500-normal-Dk9ku72i.woff2
+      ├── instrument-sans-500-normal-Z6ESRlEs.woff
+      ├── instrument-sans-600-normal-B7fBEWYG.woff2
+      ├── instrument-sans-600-normal-B9e8oLYv.woff
+  ├── css
+  ├── js
+  ├── views
+    ├── app.css
+    ├── apple-tinted.css
+    ├── api.js
+    ├── app.js
+    ├── auditoria.js
+    ├── dashboard.js
+    ├── inventario.js
+    ├── pinpad.js
+    ├── pos.js
+    ├── recetas.js
+    ├── usuarios.js
+    ├── layouts
+    ├── auditoria.blade.php
+    ├── dashboard.blade.php
+    ├── index.blade.php
+    ├── inventario.blade.php
+    ├── pos.blade.php
+    ├── recetas.blade.php
+    ├── usuarios.blade.php
+    ├── welcome.blade.php
+      ├── app.blade.php
+      ├── sidebar.blade.php
+  ├── api.php
+  ├── console.php
+  ├── web.php
+  ├── bartenders-Flujo-de-Barten-34d98-ede-iniciar-y-cerrar-sesión-chromium
+  ├── bartenders-Flujo-de-Barten-3e02d-ede-iniciar-y-cerrar-sesión-chromium
+  ├── bartenders-Flujo-de-Barten-9731d-ede-iniciar-y-cerrar-sesión-chromium
+    ├── trace.zip
+    ├── trace.zip
+    ├── trace.zip
+  ├── Feature
+  ├── Unit
+  ├── TestCase.php
+    ├── AuthTest.php
+    ├── InventarioTest.php
+    ├── OrdenCobroTest.php
+    ├── OrdenCreacionTest.php
+    ├── RolesYUsuariosTest.php
+    ├── SeguridadTest.php
