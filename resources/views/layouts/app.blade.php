@@ -9,10 +9,16 @@
   <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
   
-  <!-- ✅ ENLACE CORRECTO DE LOS ÍCONOS -->
+  <!-- Enlace de los Íconos -->
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
   
-  @vite(['resources/css/app.css', 'resources/js/app.js'])
+  <!-- CSS y JS compilados por Vite (Incluyendo api.js y dashboard.js) -->
+  @vite([
+      'resources/css/app.css', 
+      'resources/js/app.js', 
+      'resources/js/api.js', 
+      'resources/js/dashboard.js'
+  ])
 
   <style>
     @layer base {
