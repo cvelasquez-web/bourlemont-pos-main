@@ -8,38 +8,70 @@ return new class extends Migration
 {
     public function up(): void
     {
+        // Función auxiliar para verificar si una llave foránea ya existe
+        $foreignKeyExists = function ($tableName, $foreignKeyName) {
+            $conn = Schema::getConnection();
+            $dbName = $conn->getDatabaseName();
+            $query = "SELECT constraint_name FROM information_schema.table_constraints WHERE table_name = ? AND constraint_name = ? AND constraint_type = 'FOREIGN KEY'";
+            return count($conn->select($query, [$tableName, $foreignKeyName])) > 0;
+        };
+
         // 1. Relaciones de la tabla Ordenes
-        Schema::table('ordenes', function (Blueprint $table) {
-            $table->foreign('id_usuario_creacion')->references('id_usuario')->on('usuarios')->onDelete('restrict');
-        });
+        if (!$foreignKeyExists('ordenes', 'ordenes_id_usuario_creacion_foreign')) {
+            Schema::table('ordenes', function (Blueprint $table) {
+                $table->foreign('id_usuario_creacion')->references('id_usuario')->on('usuarios')->onDelete('restrict');
+            });
+        }
 
         // 2. Relaciones de Detalle Orden
-        Schema::table('detalle_orden', function (Blueprint $table) {
-            $table->foreign('id_orden')->references('id_orden')->on('ordenes')->onDelete('cascade');
-            $table->foreign('id_producto')->references('id_producto')->on('productos')->onDelete('restrict');
-        });
+        if (!$foreignKeyExists('detalle_orden', 'detalle_orden_id_orden_foreign')) {
+            Schema::table('detalle_orden', function (Blueprint $table) {
+                $table->foreign('id_orden')->references('id_orden')->on('ordenes')->onDelete('cascade');
+            });
+        }
+        if (!$foreignKeyExists('detalle_orden', 'detalle_orden_id_producto_foreign')) {
+            Schema::table('detalle_orden', function (Blueprint $table) {
+                $table->foreign('id_producto')->references('id_producto')->on('productos')->onDelete('restrict');
+            });
+        }
 
         // 3. Relaciones de Transacciones de Pago
-        Schema::table('transacciones_pago', function (Blueprint $table) {
-            $table->foreign('id_orden')->references('id_orden')->on('ordenes')->onDelete('cascade');
-            $table->foreign('id_usuario_cobro')->references('id_usuario')->on('usuarios')->onDelete('restrict');
-        });
+        if (!$foreignKeyExists('transacciones_pago', 'transacciones_pago_id_orden_foreign')) {
+            Schema::table('transacciones_pago', function (Blueprint $table) {
+                $table->foreign('id_orden')->references('id_orden')->on('ordenes')->onDelete('cascade');
+            });
+        }
+        if (!$foreignKeyExists('transacciones_pago', 'transacciones_pago_id_usuario_cobro_foreign')) {
+            Schema::table('transacciones_pago', function (Blueprint $table) {
+                $table->foreign('id_usuario_cobro')->references('id_usuario')->on('usuarios')->onDelete('restrict');
+            });
+        }
 
         // 4. Relaciones de Recetas Escandallos
-        Schema::table('recetas_escandallos', function (Blueprint $table) {
-            $table->foreign('id_producto_final')->references('id_producto')->on('productos')->onDelete('cascade');
-            $table->foreign('id_insumo_base')->references('id_producto')->on('productos')->onDelete('restrict');
-        });
+        if (!$foreignKeyExists('recetas_escandallos', 'recetas_escandallos_id_producto_final_foreign')) {
+            Schema::table('recetas_escandallos', function (Blueprint $table) {
+                $table->foreign('id_producto_final')->references('id_producto')->on('productos')->onDelete('cascade');
+            });
+        }
+        if (!$foreignKeyExists('recetas_escandallos', 'recetas_escandallos_id_insumo_base_foreign')) {
+            Schema::table('recetas_escandallos', function (Blueprint $table) {
+                $table->foreign('id_insumo_base')->references('id_producto')->on('productos')->onDelete('restrict');
+            });
+        }
 
         // 5. Relaciones de Arqueos de Caja
-        Schema::table('arqueos_caja', function (Blueprint $table) {
-            $table->foreign('id_usuario')->references('id_usuario')->on('usuarios')->onDelete('restrict');
-        });
+        if (!$foreignKeyExists('arqueos_caja', 'arqueos_caja_id_usuario_foreign')) {
+            Schema::table('arqueos_caja', function (Blueprint $table) {
+                $table->foreign('id_usuario')->references('id_usuario')->on('usuarios')->onDelete('restrict');
+            });
+        }
 
         // 6. Relaciones de Bitácora Auditoria
-        Schema::table('bitacora_auditoria', function (Blueprint $table) {
-            $table->foreign('id_usuario')->references('id_usuario')->on('usuarios')->onDelete('restrict');
-        });
+        if (!$foreignKeyExists('bitacora_auditoria', 'bitacora_auditoria_id_usuario_foreign')) {
+            Schema::table('bitacora_auditoria', function (Blueprint $table) {
+                $table->foreign('id_usuario')->references('id_usuario')->on('usuarios')->onDelete('restrict');
+            });
+        }
     }
 
     public function down(): void
