@@ -25,6 +25,7 @@ RUN touch .env && \
     echo "APP_ENV=production" >> .env && \
     echo "APP_DEBUG=false" >> .env && \
     echo "APP_URL=https://bourlemont-pos-main.onrender.com" >> .env && \
+    echo "APP_KEY=\${APP_KEY}" >> .env && \
     echo "DB_CONNECTION=pgsql" >> .env && \
     echo "DB_URL=\${DATABASE_URL}" >> .env && \
     echo "SESSION_DRIVER=file" >> .env && \
@@ -54,5 +55,12 @@ RUN echo "server { \n\
 # Exponer puerto
 EXPOSE 10000
 
-# Iniciar PHP-FPM en segundo plano y luego Nginx en primer plano
-CMD php-fpm -D && nginx -g "daemon off;"
+# ==========================================
+# ARRANCAR LA APLICACIÓN CON MIGRACIONES
+# ==========================================
+CMD php artisan config:clear && \
+    php artisan cache:clear && \
+    php artisan route:clear && \
+    php artisan view:clear && \
+    php artisan migrate --force && \
+    php-fpm -D && nginx -g "daemon off;"
