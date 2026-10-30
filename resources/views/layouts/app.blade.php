@@ -12,12 +12,18 @@
   <!-- Enlace de los Íconos -->
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
   
-  <!-- CSS y JS compilados por Vite (Incluyendo api.js y dashboard.js) -->
+  <!-- CSS y JS compilados por Vite (Todos los archivos) -->
   @vite([
       'resources/css/app.css', 
       'resources/js/app.js', 
       'resources/js/api.js', 
-      'resources/js/dashboard.js'
+      'resources/js/dashboard.js',
+      'resources/js/pinpad.js',
+      'resources/js/pos.js',
+      'resources/js/inventario.js',
+      'resources/js/auditoria.js',
+      'resources/js/recetas.js',
+      'resources/js/usuarios.js'
   ])
 
   <style>

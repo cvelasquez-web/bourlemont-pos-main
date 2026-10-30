@@ -9,8 +9,14 @@ export default defineConfig({
             input: [
                 'resources/css/app.css',
                 'resources/js/app.js',
+                'resources/js/api.js',
                 'resources/js/dashboard.js',
-                'resources/js/api.js' // <-- AGREGADO
+                'resources/js/pinpad.js',
+                'resources/js/pos.js',
+                'resources/js/inventario.js',
+                'resources/js/auditoria.js',
+                'resources/js/recetas.js',
+                'resources/js/usuarios.js'
             ],
             refresh: true,
             fonts: [
